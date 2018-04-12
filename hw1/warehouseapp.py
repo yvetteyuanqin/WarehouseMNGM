@@ -1,14 +1,11 @@
 __author__ = 'Yuan Qin'
 __date__ = "4/5/2018"
-__projectname__ = "warehouse application"
+__projectname__ = "warehouse"
 
 import csv
 import sys
 loc_dict = {}  # location according to id
-orderlist = [];
-optorderlist = [];
 
-# readin products location
 def readin():
     # rack = []
     # with open('warehouse-grid.csv') as csvfile:
@@ -34,21 +31,9 @@ def readin():
             loc_dict[pro_id] = [pro_x, pro_y]
     print "total goods num:", len(loc_dict)
 
-#readin order number
-def readorder(s):
-    with open(s) as csvfile:
-        spamreader = csv.reader(csvfile)
-        for row in spamreader:
-            spamrow = row[0].split('\t')
-            oneorder = []
-            for element in spamrow:
-                if element != '':
-                    oneorder.append(int(element))
-            orderlist.append(oneorder)
-        print orderlist
 
-#!!!!!!!!!!!!!!!!!!!
-def findpath(pro_id,init_x = 0, init_y = 0, end_x = 0, end_y = 20):
+
+def findpath(pro_id,init_x = 0, init_y = 0):
     pro_id = int(pro_id)
     if pro_id not in loc_dict:
         print "id not exist"
@@ -91,51 +76,22 @@ def findpath(pro_id,init_x = 0, init_y = 0, end_x = 0, end_y = 20):
 
     print "Total distance is : ", distance
 
-#!!!!!!!!!!!!!!!!!!
-def shortestpath(oneorder):
-    optoneorder = []
-    ordersloc = []
-    for item_no in oneorder:
-        ordersloc.append(loc_dict[item_no])
-    return
-
-
-
-def writeorderfile(a,s):
-    with open(s, "w+") as my_csv:
-        csvWriter = csv.writer(my_csv, delimiter='\t')
-        csvWriter.writerows(a)
 
 
 if __name__ == '__main__':
     print
     print
+    readin()
 
-    #readin()
+    if len(sys.argv) == 2:
+        print "Product id:", sys.argv[1], ", with initial position(0,0)"
+        findpath(sys.argv[1])
+    elif len(sys.argv) == 4:
+        print "Product id:", sys.argv[1], ", with initial position (", int(sys.argv[2]), ",", int(sys.argv[3]), ")"
+        findpath(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]))
+    else:
+        print sys.argv[0],"input argv #:", len(sys.argv)," Please enter the product id in the command line, initial position default as(0,0) if no input specified"
 
-    #input
-
-    orderlist = raw_input("Hello User, what items would you like to pick?: ")
-    spamorderlist = orderlist.split(',')
-    oneorder = []
-    for element in spamorderlist:
-        oneorder.append(int(element))
-    optoneorder = shortestpath(oneorder)
-
-    # (x_init,y_init)= input("Hello User, where is your worker? (x,y):  default(0,0) \n > ")
-    # (x_end, y_end) = input("What is your worker's end location? (x,y):   default(0,10) \n > ")
-    # orderfile = raw_input("Please list order file name: \n >")
-    # readorder(orderfile)
-    # for oneorder in orderlist:
-    #     optorderlist.append(shortestpath(oneorder))
-
-    # optorderfile = raw_input("Please list optimized order file name: \n >")
-    # #test
-    # a = [[1, 2, 3, 4], [2, 3, 234, 5, 643, 4, 4]]
-    # writeorderfile(optorderlist, a)
-    # # findpath(pro_id, x_init, y_init, x_end, y_end)
-    # readorder(optorderfile)
     print
     print
-
 
