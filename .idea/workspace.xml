@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b30edc8a-4958-42f7-b4cd-e062a782d1fc" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/eecs221.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/eecs221.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphtest.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphtest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/warehouseapp.py" beforeDir="false" afterPath="$PROJECT_DIR$/warehouseapp.py" afterDir="false" />
@@ -19,8 +18,8 @@
       <file leaf-file-name="warehouseapp.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/warehouseapp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="123" lean-forward="true" selection-start-line="123" selection-end-line="123" />
+            <state relative-caret-position="136">
+              <caret line="144" lean-forward="true" selection-start-line="144" selection-end-line="144" />
               <folding>
                 <element signature="e#89#99#0" expanded="true" />
               </folding>
@@ -31,8 +30,8 @@
       <file leaf-file-name="graphtest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/graphtest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="960">
-              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+            <state relative-caret-position="344">
+              <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
             </state>
           </provider>
         </entry>
@@ -52,6 +51,7 @@
       <find>i</find>
       <find>findpath</find>
       <find>optimizeorder</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -119,7 +119,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/graphtest.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/warehouseapp.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -151,8 +151,8 @@
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13333334" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3537736" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3337264" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32900944" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
@@ -219,15 +219,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/graphtest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+        <state relative-caret-position="344">
+          <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/warehouseapp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="123" lean-forward="true" selection-start-line="123" selection-end-line="123" />
+        <state relative-caret-position="136">
+          <caret line="144" lean-forward="true" selection-start-line="144" selection-end-line="144" />
           <folding>
             <element signature="e#89#99#0" expanded="true" />
           </folding>

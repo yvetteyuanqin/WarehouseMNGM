@@ -6,6 +6,7 @@ import csv
 import sys
 import graphtest
 import networkx as nx
+import itertools
 
 loc_dict = {}  # location according to id
 orderlist = [];
@@ -57,9 +58,9 @@ def readorder(s):
                 if element != '':
                     oneorder.append(int(element))
             orderlist.append(oneorder)
-        print orderlist
+        # print orderlist
 
-# find shortest path between two points
+# find shortest distance between two points
 def findpath(pro_id,init_x = 0, init_y = 0):
     pro_id = int(pro_id)
     if pro_id not in loc_dict:
@@ -68,8 +69,8 @@ def findpath(pro_id,init_x = 0, init_y = 0):
 
     pro_x = loc_dict[pro_id][0]     #x,y coordinates of products
     pro_y = loc_dict[pro_id][1]
-    print "Searching product id",pro_id, "product position", (pro_x,pro_y)
-    print "Calculating shortest path for one item......"
+    # print "Searching product id",pro_id, "product position", (pro_x,pro_y)
+    # print "Calculating shortest path for one item......"
 
     #Product con only be taken from left or right, say east and west
     #if the product position is east to the current position i.e. init_x < prod_x
@@ -89,7 +90,7 @@ def findpath(pro_id,init_x = 0, init_y = 0):
     else:
         des_x = init_x
         des_y = pro_y
-    print "desired position",  (des_x,des_y)
+    # print "desired position",  (des_x,des_y)
     # algorithm:x+y
     # if init_x==0 and init_y ==0 or init_y % 2 == 0:
     #     print "first x dir than y dir:", (init_x,init_y),"to",(des_x,init_y),"to",(des_x,des_y)
@@ -109,17 +110,58 @@ def findpath(pro_id,init_x = 0, init_y = 0):
 
 
 
-#!!!!!!!!!!!!!!!!!!
+#rearrange and optimize the order order
 def optimizeorder(oneorder):
+    ordergraph = nx.Graph()
     optoneorder = []
     orderloc = []
     for item_no in oneorder:
         orderloc.append(loc_dict[item_no])
+        ordergraph.add_node(item_no)
 
-    print "compute TSP"
-    #findpath()
+    # print "compute distance between each nodes"
+    # nodespair = list(itertools.combinations(oneorder, 2))
+    # ordergraph.add_edges_from(nodespair)
+    # # heuristics,not known:start from where? distance between 2 items,+-1
+    # for pair in nodespair:
+    #     d,des_x,des_y = findpath(pair[0])
+    #     pathlength,x,y= findpath(pair[1],des_x,des_y)
+    #     ordergraph.add_edge(pair[0], pair[1], weight = pathlength)
+    #     print "shortest distance between ",(pair[0], pair[1])," ",pathlength
+    #     print
+    # # distances between pairs calculated, brute force calculate shortest travelling order
+    # # brute force
+    possiblepath = list(itertools.permutations(oneorder, 3))
+    print 'possible path: ',possiblepath
+    min = 1000000
+    for p in possiblepath:
+        dist = originalorder(list(p))
+        if dist< min:
+            min = dist
+            optorderlist = list(p)
+    print 'min travel distance: ',min,'in order of: ', optorderlist
+
     return optoneorder
 
+def originalorder(oneorder):
+    # original order
+    x_init = 0
+    y_init = 0
+    dist_oneorder = 0
+    for item in oneorder:
+        dist, x_des, y_des= findpath(item,x_init,y_init)
+        x_init = x_des
+        y_init = y_des
+        dist_oneorder = dist_oneorder + dist
+        # print
+    # back to end point
+
+    # print"returning to end point......"
+    backtrip = graphtest.pathgraph(0, 20, x_init, y_init)
+    dist_oneorder = dist_oneorder + backtrip
+
+    # print 'Distance for one order without optimization', dist_oneorder
+    return dist_oneorder
 
 
 def writeorderfile(a,s):
@@ -127,34 +169,19 @@ def writeorderfile(a,s):
         csvWriter = csv.writer(my_csv, delimiter='\t')
         csvWriter.writerows(a)
 
-def singleOrder():
-
-    orderlist = raw_input("Hello User, what items would you like to pick?: ")
-    spamorderlist = orderlist.split(',')
-    oneorder = []
-    # (x_init,y_init)= input("Hello User, where is your worker? (x,y):  default(0,0) \n > ")
-    1 # (x_end, y_end) = input("What is your worker's end location? (x,y):   default(0,20) \n > ")
-    for element in spamorderlist:
-        oneorder.append(int(element))
+def singleOrder(p = None):
+    if p == None:
+        orderlist = raw_input("Hello User, what items would you like to pick?: ")
+        spamorderlist = orderlist.split(',')
+        oneorder = []
+        # (x_init,y_init)= input("Hello User, where is your worker? (x,y):  default(0,0) \n > ")
+        1 # (x_end, y_end) = input("What is your worker's end location? (x,y):   default(0,20) \n > ")
+        for element in spamorderlist:
+            oneorder.append(int(element))
     print 'the order ready to pick: ',oneorder
 
-    # # original order
-    # x_init = 0
-    # y_init = 0
-    # dist_oneorder = 0
-    # for item in oneorder:
-    #     dist, x_des, y_des= findpath(item,x_init,y_init)
-    #     x_init = x_des
-    #     y_init = y_des
-    #     dist_oneorder = dist_oneorder + dist
-    #     print
-    # # back to end point
-    #
-    # print"returning to end point......"
-    # backtrip = graphtest.pathgraph(0, 20, x_init, y_init)
-    # dist_oneorder = dist_oneorder + backtrip
-    #
-    # print 'Distance for one order without optimization', dist_oneorder
+    originalorder(oneorder)
+
 
     optimizeorder(oneorder)
 

@@ -37,11 +37,11 @@ def pathgraph(des_x=0,des_y=20,init_x=0,init_y=0):
     # look for the key number of node according to location given
     pgone = pathgraph.subgraph([i for i, node in pathgraph.nodes(data=True) if node['coordinate'] == [init_x, init_y]])
     positioninit = int(list(pgone.node)[0])
-    print 'position node of original: ', positioninit  # node number with attr of(init_x,init_y)
+    # print 'position node of original: ', positioninit  # node number with attr of(init_x,init_y)
 
     pgone = pathgraph.subgraph([i for i, node in pathgraph.nodes(data=True) if node['coordinate'] == [des_x, des_y]])
     positiondes = int(list(pgone.node)[0])
-    print 'position node of destination: ',positiondes  # node number with attr of(des_x,des_y)
+    # print 'position node of destination: ',positiondes  # node number with attr of(des_x,des_y)
 
     # compute shortest path and distance
     traversednodelist = list(nx.dijkstra_path(pathgraph, positioninit, positiondes, 'distance'))
@@ -51,10 +51,10 @@ def pathgraph(des_x=0,des_y=20,init_x=0,init_y=0):
         coordinates = nx.get_node_attributes(pathgraph, 'coordinate')
         traversedpoint.append(coordinates[node])
 
-
-    print 'Traverse node: ', nx.dijkstra_path(pathgraph, positioninit, positiondes, 'distance')
-    print 'According coordinate:', traversedpoint
-    print 'with distance for one item:', nx.dijkstra_path_length(pathgraph, positioninit, positiondes, 'distance')
+    # print out path
+    # print 'Traverse node: ', nx.dijkstra_path(pathgraph, positioninit, positiondes, 'distance')
+    # print 'According coordinate:', traversedpoint
+    # print 'with distance for one item:', nx.dijkstra_path_length(pathgraph, positioninit, positiondes, 'distance')
 
     itemdistance = nx.dijkstra_path_length(pathgraph, positioninit, positiondes, 'distance')
     return itemdistance
