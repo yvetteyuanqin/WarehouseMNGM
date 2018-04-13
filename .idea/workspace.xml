@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b30edc8a-4958-42f7-b4cd-e062a782d1fc" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/eecs221.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/eecs221.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphtest.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphtest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/warehouseapp.py" beforeDir="false" afterPath="$PROJECT_DIR$/warehouseapp.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,8 +19,11 @@
       <file leaf-file-name="warehouseapp.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/warehouseapp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+            <state relative-caret-position="219">
+              <caret line="123" lean-forward="true" selection-start-line="123" selection-end-line="123" />
+              <folding>
+                <element signature="e#89#99#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -26,11 +31,8 @@
       <file leaf-file-name="graphtest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/graphtest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3554">
-              <caret line="299" lean-forward="true" selection-start-line="299" selection-end-line="299" />
-              <folding>
-                <element signature="e#2417#2452#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="960">
+              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
             </state>
           </provider>
         </entry>
@@ -47,6 +49,9 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>warehouse-orders-v01.csv</find>
+      <find>i</find>
+      <find>findpath</find>
+      <find>optimizeorder</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -80,15 +85,14 @@
               <item name="eecs221" type="b2602c69:ProjectViewProjectNode" />
               <item name="eecs221" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="eecs221" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
     </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -115,7 +119,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/warehouseapp.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/graphtest.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -147,7 +151,7 @@
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13333334" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31132075" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3537736" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -175,7 +179,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="15" />
+      <option name="time" value="26" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -183,15 +187,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/graphtest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3554">
-          <caret line="299" lean-forward="true" selection-start-line="299" selection-end-line="299" />
           <folding>
-            <element signature="e#2417#2452#0" expanded="true" />
+            <element signature="e#89#99#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -203,10 +200,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Readme">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/site-packages/networkx/classes/graph.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="480" selection-start-line="480" selection-end-line="480" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/site-packages/networkx/convert.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="128" selection-start-line="128" selection-end-line="128" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graphtest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="960">
+          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/warehouseapp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+        <state relative-caret-position="219">
+          <caret line="123" lean-forward="true" selection-start-line="123" selection-end-line="123" />
+          <folding>
+            <element signature="e#89#99#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

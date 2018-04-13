@@ -4,9 +4,13 @@ __projectname__ = "warehouse application"
 
 import csv
 import sys
+import graphtest
+import networkx as nx
+
 loc_dict = {}  # location according to id
 orderlist = [];
 optorderlist = [];
+pathnode = nx.Graph()
 
 # readin products location
 def readin():
@@ -26,13 +30,21 @@ def readin():
 
     with open('warehouse-grid.csv') as csvfile:
         spamreader = csv.reader(csvfile)
+        max_x = 0
+        max_y = 0
         for row in spamreader:
             pro_id = int(row[0])
-            pro_x = int(int(float(row[1])) * 2)+1 #double the cordinates to simulate the path and move the rack from(0,0)to (1,1)
-            pro_y = int(int(float(row[2])) * 2)+1 #then the robot only operate on coordinate with even number
-
+            pro_x = int(float(row[1])) * 2+1 #double the cordinates to simulate the path and move the rack from(0,0)to (1,1)
+            pro_y = int(float(row[2])) * 2+1
+            if pro_x>max_x:
+                max_x = pro_x
+            if pro_y>max_y:
+                max_y = pro_y
             loc_dict[pro_id] = [pro_x, pro_y]
     print "total goods num:", len(loc_dict)
+    max_x = (max_x-1)/2
+    max_y = (max_y - 1) / 2
+    print "max rack number in row, col", max_x, max_y
 
 #readin order number
 def readorder(s):
@@ -47,8 +59,8 @@ def readorder(s):
             orderlist.append(oneorder)
         print orderlist
 
-#!!!!!!!!!!!!!!!!!!!
-def findpath(pro_id,init_x = 0, init_y = 0, end_x = 0, end_y = 20):
+# find shortest path between two points
+def findpath(pro_id,init_x = 0, init_y = 0):
     pro_id = int(pro_id)
     if pro_id not in loc_dict:
         print "id not exist"
@@ -56,8 +68,9 @@ def findpath(pro_id,init_x = 0, init_y = 0, end_x = 0, end_y = 20):
 
     pro_x = loc_dict[pro_id][0]     #x,y coordinates of products
     pro_y = loc_dict[pro_id][1]
-    print "Searching product #", pro_id, "product position", (pro_x,pro_y)
-    print "Calculating shortest path ......"
+    print "Searching product id",pro_id, "product position", (pro_x,pro_y)
+    print "Calculating shortest path for one item......"
+
     #Product con only be taken from left or right, say east and west
     #if the product position is east to the current position i.e. init_x < prod_x
     if init_x < pro_x:
@@ -77,27 +90,35 @@ def findpath(pro_id,init_x = 0, init_y = 0, end_x = 0, end_y = 20):
         des_x = init_x
         des_y = pro_y
     print "desired position",  (des_x,des_y)
+    # algorithm:x+y
+    # if init_x==0 and init_y ==0 or init_y % 2 == 0:
+    #     print "first x dir than y dir:", (init_x,init_y),"to",(des_x,init_y),"to",(des_x,des_y)
+    #     distance = abs(des_x - init_x) + abs(des_y - init_y)
+    # else:
+    #     # rack in the way, 1 move in y direction first, update initial y
+    #     print"rack in the way",(init_x,init_y),"to", (init_x,init_y+1)
+    #     init_y = init_y+1
+    #     print "first x dir than y dir:", (init_x,init_y),"to",(des_x,init_y),"to",(des_x,des_y)
+    #     distance = abs(des_x - init_x) + abs(des_y - init_y)+1
 
-    if init_x==0 and init_y ==0 or init_y % 2 == 0:
-        print "first x dir than y dir:", (init_x,init_y),"to",(des_x,init_y),"to",(des_x,des_y)
-        distance = abs(des_x - init_x) + abs(des_y - init_y)
-    else:
-        # rack in the way, 1 move in y direction first, update initial y
-        print"rack in the way",(init_x,init_y),"to", (init_x,init_y+1)
-        init_y = init_y+1
-        print "first x dir than y dir:", (init_x,init_y),"to",(des_x,init_y),"to",(des_x,des_y)
-        distance = abs(des_x - init_x) + abs(des_y - init_y)+1
+    # route and distance print in pathgraph()
+    # algorithm: creating path graph and use dijkstra
+    itemdistance = graphtest.pathgraph(des_x, des_y,init_x,init_y)
+    return itemdistance, des_x, des_y
 
 
-    print "Total distance is : ", distance
+
 
 #!!!!!!!!!!!!!!!!!!
-def shortestpath(oneorder):
+def optimizeorder(oneorder):
     optoneorder = []
-    ordersloc = []
+    orderloc = []
     for item_no in oneorder:
-        ordersloc.append(loc_dict[item_no])
-    return
+        orderloc.append(loc_dict[item_no])
+
+    print "compute TSP"
+    #findpath()
+    return optoneorder
 
 
 
@@ -106,34 +127,77 @@ def writeorderfile(a,s):
         csvWriter = csv.writer(my_csv, delimiter='\t')
         csvWriter.writerows(a)
 
+def singleOrder():
+
+    orderlist = raw_input("Hello User, what items would you like to pick?: ")
+    spamorderlist = orderlist.split(',')
+    oneorder = []
+    # (x_init,y_init)= input("Hello User, where is your worker? (x,y):  default(0,0) \n > ")
+    1 # (x_end, y_end) = input("What is your worker's end location? (x,y):   default(0,20) \n > ")
+    for element in spamorderlist:
+        oneorder.append(int(element))
+    print 'the order ready to pick: ',oneorder
+
+    # # original order
+    # x_init = 0
+    # y_init = 0
+    # dist_oneorder = 0
+    # for item in oneorder:
+    #     dist, x_des, y_des= findpath(item,x_init,y_init)
+    #     x_init = x_des
+    #     y_init = y_des
+    #     dist_oneorder = dist_oneorder + dist
+    #     print
+    # # back to end point
+    #
+    # print"returning to end point......"
+    # backtrip = graphtest.pathgraph(0, 20, x_init, y_init)
+    # dist_oneorder = dist_oneorder + backtrip
+    #
+    # print 'Distance for one order without optimization', dist_oneorder
+
+    optimizeorder(oneorder)
+
+
 
 if __name__ == '__main__':
     print
     print
 
-    #readin()
+    readin()
 
-    #input
+    # input single order
+    singleOrder()
 
-    orderlist = raw_input("Hello User, what items would you like to pick?: ")
-    spamorderlist = orderlist.split(',')
-    oneorder = []
-    for element in spamorderlist:
-        oneorder.append(int(element))
-    optoneorder = shortestpath(oneorder)
+    # compute shortest path
 
-    # (x_init,y_init)= input("Hello User, where is your worker? (x,y):  default(0,0) \n > ")
-    # (x_end, y_end) = input("What is your worker's end location? (x,y):   default(0,10) \n > ")
+    x_end = 0
+    y_end = 20
+    x_init = 0
+    y_init = 0
+    # optoneorder = shortestpath(oneorder, x_init, y_init, x_end, y_end)
+
+    # input order file
+
     # orderfile = raw_input("Please list order file name: \n >")
     # readorder(orderfile)
-    # for oneorder in orderlist:
-    #     optorderlist.append(shortestpath(oneorder))
+
+    # compute shortest path
+    # (x_end, y_end) = input("What is your worker's end location? (x,y):   default(0,10) \n > ")
+    # (x_init,y_init)= input("Hello User, where is your worker? (x,y):  default(0,0) \n > ")
+    # x_end = 0
+    # y_end = 20
+    # x_init = 0
+    # y_init = 0
+
+    # for oneorder in optorderlist:
+    #     optorderlist.append(shortestpath(oneorder, x_init, y_init, x_end, y_end))
 
     # optorderfile = raw_input("Please list optimized order file name: \n >")
     # #test
     # a = [[1, 2, 3, 4], [2, 3, 234, 5, 643, 4, 4]]
     # writeorderfile(optorderlist, a)
-    # # findpath(pro_id, x_init, y_init, x_end, y_end)
+    # dist = findpath(45, x_init, y_init)
     # readorder(optorderfile)
     print
     print
