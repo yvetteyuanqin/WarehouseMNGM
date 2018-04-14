@@ -1,8 +1,6 @@
 import networkx as nx
 
 
-
-
 # pathgraph.add_node(0,coordinate=[1,2])
 # print pathgraph.node[0]['coordinate']
 
@@ -14,7 +12,7 @@ l=1 #rack
 def pathgraph(des_x=0,des_y=20,init_x=0,init_y=0):
     i=0
     pathgraph = nx.Graph()
-
+    # create graph
     # add nodes
     for c in range(2*max_x+1):
         if c % 2 ==0:
@@ -35,12 +33,16 @@ def pathgraph(des_x=0,des_y=20,init_x=0,init_y=0):
     # print pathgraph.edges
 
     # look for the key number of node according to location given
-    pgone = pathgraph.subgraph([i for i, node in pathgraph.nodes(data=True) if node['coordinate'] == [init_x, init_y]])
-    positioninit = int(list(pgone.node)[0])
+    # pgone = pathgraph.subgraph([i for i, node in pathgraph.nodes(data=True) if node['coordinate'] == [init_x, init_y]])
+    # positioninit = int(list(pgone.node)[0])
+    # quicker
+    positioninit = init_x/2*(2*max_y+1)+init_y
+    positiondes = des_x / 2 * (2 * max_y + 1) + des_y
+
     # print 'position node of original: ', positioninit  # node number with attr of(init_x,init_y)
 
-    pgone = pathgraph.subgraph([i for i, node in pathgraph.nodes(data=True) if node['coordinate'] == [des_x, des_y]])
-    positiondes = int(list(pgone.node)[0])
+    # pgone = pathgraph.subgraph([i for i, node in pathgraph.nodes(data=True) if node['coordinate'] == [des_x, des_y]])
+    # positiondes = int(list(pgone.node)[0])
     # print 'position node of destination: ',positiondes  # node number with attr of(des_x,des_y)
 
     # compute shortest path and distance

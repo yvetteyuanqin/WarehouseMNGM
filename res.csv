@@ -1,0 +1,21 @@
+Order number:	0
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:	16643	123462	119063	128827	188598	323836	660999	661002
+Optimized order:	660999	661002	128827	16643	123462	119063	188598	323836
+Original parts distance:	92
+Optimized parts distance:	41
+Order number:	1
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:	352109	397889	386850	380489	287261
+Optimized order:	287261	380489	352109	397889	386850
+Original parts distance:	48
+Optimized parts distance:	21
+Order number:	1
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	352109	397889	386850	380489	287261
+Optimized order:	287261	380489	352109	397889	386850
+Original parts distance:	48
+Optimized parts distance:	21
