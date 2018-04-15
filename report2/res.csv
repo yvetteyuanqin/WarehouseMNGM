@@ -1,0 +1,14 @@
+Order number:	0
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	281610	342706	111873	198029	366109	287261	76283	254489	258540	286457
+Optimized order:	254489	342706	111873	287261	281610	198029	366109	76283	258540	286457
+Original parts distance:	70
+Optimized parts distance:	29
+Order number:	1
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	281610	342706	111873	198029	366109	287261	76283	254489	258540	286457
+Optimized order:	254489	342706	111873	287261	281610	198029	366109	76283	258540	286457
+Original parts distance:	70
+Optimized parts distance:	29
