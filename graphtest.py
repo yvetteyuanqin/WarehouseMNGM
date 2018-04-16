@@ -1,6 +1,8 @@
 import networkx as nx
 
+import matplotlib.pyplot as plt
 
+import numpy as np
 # pathgraph.add_node(0,coordinate=[1,2])
 # print pathgraph.node[0]['coordinate']
 
@@ -31,6 +33,9 @@ def pathgraph(des_x=0,des_y=20,init_x=0,init_y=0):
         for c in range(max_x):
             pathgraph.add_edge(c*(2*max_y+1)+r, (c+1)*(2*max_y+1)+ r, distance=2)
     # print pathgraph.edges
+
+    # pos = nx.spring_layout(pathgraph)
+    # nx.draw(pathgraph, pos)
 
     # look for the key number of node according to location given
     # pgone = pathgraph.subgraph([i for i, node in pathgraph.nodes(data=True) if node['coordinate'] == [init_x, init_y]])

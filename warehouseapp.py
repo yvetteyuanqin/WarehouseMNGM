@@ -34,10 +34,10 @@ def readin():
             if pro_y>max_y:
                 max_y = pro_y
             loc_dict[pro_id] = [pro_x, pro_y]
-    print "Total goods num:", len(loc_dict)
+    print ("Total goods num:", len(loc_dict))
     max_x = (max_x-1)/2
     max_y = (max_y - 1) / 2
-    print "Max rack number in row, col", max_x, max_y
+    print ("Max rack number in row, col", max_x, max_y)
 
 #readin order number
 def readorder(s):
@@ -56,7 +56,7 @@ def readorder(s):
 def findpath(pro_id,init_x = 0, init_y = 0):
     pro_id = int(pro_id)
     if pro_id not in loc_dict:
-        print "id not exist"
+        print ("id not exist")
         return -1
 
     pro_x = loc_dict[pro_id][0]     #x,y coordinates of products
@@ -108,8 +108,8 @@ def optimizeorder(oneorder,init_x,init_y,end_x,end_y):
         ordergraph.add_edge('start', item_no,length = d0)
         ordergraph.add_edge('end', item_no,length = df)
 
-    # brute force compute optimized order
-    print "Computing shortest distance to travel ......"
+    '''# brute force compute optimized order
+    print ("Computing shortest distance to travel ......")
     print
     start = time.time()
     nodespair = list(itertools.combinations(oneorder, 2))
@@ -142,14 +142,15 @@ def optimizeorder(oneorder,init_x,init_y,end_x,end_y):
             min = dist
             optoneorder = list(p)
         dist = 0
-    print 'Minimum travel distance: ',min,',in order of: ', 'start from ',(init_x,init_y),optoneorder,', end at ',(end_x,end_y)
+    print ('Minimum travel distance: ',min,',in order of: ', 'start from ',(init_x,init_y),optoneorder,', end at ',(end_x,end_y))
     loclist = []
     for item in optoneorder:
-        print 'go to shelf:',shelf_dict[item],'on location:', loc_dict[item], 'pick up item:',item, ', then ',
+        print( 'go to shelf:',shelf_dict[item],'on location:', loc_dict[item], 'pick up item:',item, ', then ',)
     # measure time
     end = time.time()
-    print 'drop off at:', [end_x,end_y]
-    print'Brute force cost:', end - start
+    print ('drop off at:', [end_x,end_y])
+    print('Brute force cost:', end - start)
+    '''
     return optoneorder,min
 
 def originalorder(oneorder,x_init,y_init,x_end,y_end):
@@ -167,19 +168,19 @@ def originalorder(oneorder,x_init,y_init,x_end,y_end):
     backtrip = graphtest.pathgraph(x_init,y_init,x_end,y_end)
     dist_oneorder = dist_oneorder + backtrip
 
-    print 'Distance for one order without optimization', dist_oneorder
+    print ('Distance for one order without optimization', dist_oneorder)
     return dist_oneorder
 
 
 def singleOrder(oneorder,x_init,y_init,x_end,y_end):
     if oneorder == None:
         oneorder = []
-        orderlist = raw_input("Hello User, what items would you like to pick?: use tab to separate: ")
+        orderlist = input("Hello User, what items would you like to pick?: use tab to separate: ")
         spamorderlist = orderlist.split('\t')
 
         for element in spamorderlist:
             oneorder.append(int(element))
-    print 'The order ready to pick: ', oneorder
+    print ('The order ready to pick: ', oneorder)
 
     dist_org=originalorder(oneorder,x_init,y_init,x_end,y_end)
 
@@ -196,16 +197,16 @@ def writeorderfile(a,file):
 
 if __name__ == '__main__':
     print
-    print
+
 
     readin()
-    choice = raw_input("Hello User, input manually: yes? no?")
-    x_init, y_init = input("Hello User, where is your worker? please enter: x,y:  if exceeds,default 0,0 \n > ")
+    choice = input("Hello User, input manually: yes? no?")
+    x_init, y_init = input("Hello User, where is your worker? please enter: x,y:  if exceeds,default 0,0 \n > ").split(',')
     # print type(x_init) is not int or type(x_init) is not int or x_init > 36 or y_init > 20
     if type(x_init) is not int or type(x_init) is not int or x_init > 36 or y_init > 20:
         x_init = 0
         y_init = 0
-    x_end, y_end = input("What is your worker's end location? please enter x,y:  if exceeds, default 0,20 \n > ")
+    x_end, y_end = input("What is your worker's end location? please enter x,y:  if exceeds, default 0,20 \n > ").split(',')
     # print type(x_end) is not int or type(x_end) is not int or x_end > 36 or y_end > 20
     if type(x_end) is not int or type(x_end) is not int or x_end > 36 or y_end > 20:
         x_end = 0
@@ -215,9 +216,9 @@ if __name__ == '__main__':
     if choice == "yes" or choice == "Yes" or choice == "YES":
         # input single order
         org,origl,opt,min = singleOrder(None,x_init,y_init,x_end,y_end)
-        print 'write into file......'
+        print ('write into file......')
         i=1
-        optorderfile = raw_input("Please list output file name: \n >")
+        optorderfile = input("Please list output file name: \n >")
         title = ['Order number:'] + [i]
         optorderlist.append(title)
         start = ['Start location:'] + [(x_init,y_init)]
@@ -235,7 +236,7 @@ if __name__ == '__main__':
         writeorderfile(optorderlist, optorderfile)
 
         i=i+1
-        print 'Writing into file......'
+        print ('Writing into file......')
 
 
     # input order file
