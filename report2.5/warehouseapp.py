@@ -9,8 +9,9 @@ import graphtest
 import networkx as nx
 import itertools
 import time
-import matplotlib.pyplot as plt
-import pyqt_test
+# import cProfile
+# import matplotlib.pyplot as plt
+# import pyqt_test
 
 
 max_x=20
@@ -26,7 +27,7 @@ optorderdetail = []
 pathnode = nx.Graph()
 dist_dict = {}
 pathgraph = nx.Graph()
-
+optoneordertemp = []
 # readin products location
 def readin():
 
@@ -99,6 +100,69 @@ def findpath(pro_id,init_x = 0, init_y = 0):
 
 
 
+def shortestdp(node,subset): #calculate from start
+    #brute force
+    '''if len(subset) == 0:
+
+        return dist_dict[('start',node)]
+    min = 10000
+    templist = []
+    temp = 0
+    for ver in subset:
+        templist = subset.copy()
+        templist.remove(ver)
+        temp = shortestdp(ver,templist) + dist_dict[(ver,node)] #node parent of vertex
+        if temp<min:
+            min = temp
+            vertex_parent[node] = ver
+
+    # print (vertex_parent)
+    return min
+    '''
+
+    i=0
+    vertex_par= {}
+    laststep = 'start'
+
+    #create 2-d matrix (item,steps):[minimum distance,from which item]
+    for i in range(len(subset)):
+        for elem in subset:
+            mintemp = 10000
+            if i == 0:
+                vertex_par[(elem,i)]=[dist_dict[(node, elem)], laststep]#from start to every node
+
+            else:
+                for otherelem in set(subset)-{elem}:
+                    if vertex_par[(otherelem,i-1)][0] + dist_dict[(elem,otherelem)]<mintemp:
+                        mintemp = vertex_par[(otherelem,i-1)][0] + dist_dict[(elem,otherelem)]
+                        othertemp = otherelem
+                vertex_par[(elem,i)]= [mintemp,othertemp]
+
+    min = 10000
+    for elem in subset:#to end
+       if  vertex_par[(elem,len(subset)-1)][0] + dist_dict[(elem,'end')]<min:
+           min = vertex_par[(elem,len(subset)-1)][0] + dist_dict[(elem,'end')]
+           elemtemp = elem
+    vertex_par[(elemtemp, 'end')] = [min, elemtemp]
+
+
+    # print(vertex_par)
+
+    optoneorder = []
+    laststep = list(vertex_par).pop()
+    dist = vertex_par[laststep][0]
+    laststep = laststep[0]
+
+    optoneorder.insert(0,laststep)#order second to last'end'
+    for i in reversed(range(len(subset))):
+        optoneorder.insert(0,vertex_par[(laststep,i)][1])#insert at head
+        laststep = vertex_par[(laststep,i)][1]
+
+    del optoneorder[0]
+    return dist,optoneorder
+
+
+
 #rearrange and optimize the order order
 def optimizeorder(oneorder,init_x,init_y,end_x,end_y):
     # construct graph and distance dictionary between graph
@@ -112,14 +176,45 @@ def optimizeorder(oneorder,init_x,init_y,end_x,end_y):
         ordergraph.add_node(item_no)
 
         # calculate from these item to end or from original to these item
-        d0, des_x, des_y = findpath(item_no,init_x,init_y)#from original
+        d0, des_x, des_y = findpath(item_no,init_x,init_y)#from original is 'start'
         dist_dict[('start',item_no)] = d0
-        df = graphtest.locdistance(pathgraph,end_x,end_y,des_x,des_y)
+        df = graphtest.locdistance(pathgraph,end_x,end_y,des_x,des_y)#to end
         dist_dict[(item_no,'end')] = df
         ordergraph.add_edge('start', item_no,length = d0)
         ordergraph.add_edge('end', item_no,length = df)
 
+    # Dynamic programming
+    print("Dynamic programming shortest distance to travel ......")
 
+    nodespair = list(itertools.combinations(oneorder, 2))
+    ordergraph.add_edges_from(nodespair)
+    # heuristics,not known:start from nowhere? distance between 2 items,+-1
+    for pair in nodespair:
+        d, des_x, des_y = findpath(pair[0])
+        pathlength, x, y = findpath(pair[1], des_x, des_y)
+        # add graph edge
+        ordergraph.add_edge(pair[0], pair[1], length=pathlength)
+        dist_dict[(pair[0], pair[1])] = pathlength
+        dist_dict[(pair[1], pair[0])] = pathlength
+
+    # solving dsp problem recursively
+    start = time.time()
+
+    min,optoneorder= shortestdp('start',oneorder)
+
+
+
+    print('Minimum travel distance: ', min, ',in order of: ', 'start from ', (init_x, init_y), optoneorder, ', end at ',
+          (end_x, end_y))
+    loclist = []
+    for item in optoneorder:
+        print('go to shelf:', shelf_dict[item], 'on location:', loc_dict[item], 'pick up item:', item, ', then ', )
+    # measure time
+    end = time.time()
+    print('drop off at:', [end_x, end_y])
+    print('Dynamic programming cost:', end - start)
+
+    '''
     # nearest neighbor
     print("Computing greedily shortest distance to travel ......")
     start = time.time()
@@ -134,18 +229,19 @@ def optimizeorder(oneorder,init_x,init_y,end_x,end_y):
         dist_dict[(pair[0], pair[1])] = pathlength
         dist_dict[(pair[1], pair[0])] = pathlength
     firstitem = 'start'
+    itemtemp = 0
     mindist = 0
     while oneorder !=[]:
         min = 10000
         for item in oneorder:
             if dist_dict[(firstitem,item)]<min:
                 min = dist_dict[(firstitem,item)]
-                firstitem = item
+                itemtemp = item
+        firstitem=itemtemp
         optoneorder.append(firstitem)
         oneorder.remove(firstitem)
         mindist = mindist + min
     mindist = mindist + dist_dict[(firstitem,'end')]#to drop off point
-
 
     print('Minimum travel distance: ', mindist, ',in order of: ', 'start from ', (init_x, init_y), optoneorder, ', end at ',
           (end_x, end_y))
@@ -156,8 +252,8 @@ def optimizeorder(oneorder,init_x,init_y,end_x,end_y):
     end = time.time()
     print('drop off at:', [end_x, end_y])
     print('Nearest neighbor cost:', end - start)
-
-
+    min = mindist
+    '''
     '''
     # brute force compute optimized order
     print ("Computing brute force shortest distance to travel ......")
@@ -202,7 +298,7 @@ def optimizeorder(oneorder,init_x,init_y,end_x,end_y):
     print ('drop off at:', [end_x,end_y])
     print('Brute force cost:', end - start)
     '''
-    return optoneorder,mindist
+    return optoneorder,min
 
 def originalorder(oneorder,x_init,y_init,x_end,y_end):
     # original order
@@ -326,7 +422,7 @@ def processorder(x_init, y_init, x_end, y_end):
         for i in range(0,len(orderlist)):
             oneorder = orderlist[i]
             org,origl,opt,min=singleOrder(oneorder,x_init, y_init, x_end, y_end)
-            print ("number processed:",i)
+            print ("number processed:",i+1)
             optorderlist.append(opt)
 
             title = ['Order number:'] + [i]
@@ -343,7 +439,7 @@ def processorder(x_init, y_init, x_end, y_end):
             optorderdetail.append(dist1)
             dist2 = ['Optimized parts distance:'] + [min]
             optorderdetail.append(dist2)
-            writeorderfile(optorderdetail, optorderfile)
+        writeorderfile(optorderdetail, optorderfile)
 
 
 
@@ -390,5 +486,6 @@ if __name__ == '__main__':
     #
     print
     print
+
 
 

@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="b30edc8a-4958-42f7-b4cd-e062a782d1fc" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphtest.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphtest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res.csv" beforeDir="false" afterPath="$PROJECT_DIR$/res.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report2.5/result_nearest_neighbor.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report2.5/warehouse-orders-v01.csv" beforeDir="false" afterPath="$PROJECT_DIR$/report2.5/warehouse-orders-v01.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report2.5/warehouseapp.py" beforeDir="false" afterPath="$PROJECT_DIR$/report2.5/warehouseapp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report2/eecs221_report2YuanQ.pages" beforeDir="false" afterPath="$PROJECT_DIR$/report2/eecs221_report2YuanQ.pages" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/warehouse-orders-v01.csv" beforeDir="false" afterPath="$PROJECT_DIR$/warehouse-orders-v01.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/warehouseapp.py" beforeDir="false" afterPath="$PROJECT_DIR$/warehouseapp.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="graphtest.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="graphtest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/graphtest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+            <state relative-caret-position="407">
+              <caret line="36" column="23" lean-forward="true" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -28,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="warehouseapp.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="warehouseapp.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/warehouseapp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="209" column="25" selection-start-line="209" selection-start-column="25" selection-end-line="209" selection-end-column="25" />
+            <state relative-caret-position="372">
+              <caret line="232" column="23" lean-forward="true" selection-start-line="232" selection-start-column="23" selection-end-line="232" selection-end-column="23" />
               <folding>
                 <element signature="e#90#100#0" expanded="true" />
               </folding>
@@ -43,7 +47,7 @@
       <file leaf-file-name="pyqt_test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyqt_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
+            <state relative-caret-position="498">
               <caret line="65" column="14" selection-start-line="65" selection-start-column="14" selection-end-line="65" selection-end-column="14" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -63,17 +67,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>single</find>
-      <find>optimi</find>
-      <find>ordergraph</find>
-      <find>sing</find>
-      <find>optorderlist</find>
-      <find>proceses</find>
-      <find>writeorder</find>
-      <find>original order</find>
-      <find>o</find>
       <find>remov</find>
-      <find>optimizeorder</find>
       <find>oneorder</find>
       <find>The</find>
       <find>optimizeo</find>
@@ -82,17 +76,27 @@
       <find>orderlist</find>
       <find>pr</find>
       <find>process</find>
-      <find>app</find>
       <find>pathgraph</find>
       <find>pick</find>
       <find>origina</find>
-      <find>findpath</find>
       <find>max_</find>
       <find>print(</find>
       <find>print</find>
       <find>po</find>
-      <find>pos_x</find>
       <find>order item</find>
+      <find>optimizeorder</find>
+      <find>start</find>
+      <find>'start'</find>
+      <find>node</find>
+      <find>node,dist</find>
+      <find>without optimization</find>
+      <find>shortestdp</find>
+      <find>temp</find>
+      <find>findpath(</find>
+      <find>findpath</find>
+      <find>app</find>
+      <find>dp</find>
+      <find>pos_x</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -107,7 +111,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="x" value="43" />
     <option name="y" value="22" />
     <option name="width" value="1397" />
@@ -187,18 +191,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13333334" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.13333334" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.40448114" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2969697" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32900944" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39976415" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3148585" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -208,12 +212,63 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.43396226" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13333334" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3148585" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32900944" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/warehouseapp.py</url>
+          <line>133</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/warehouseapp.py</url>
+          <line>127</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/warehouseapp.py</url>
+          <line>140</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/warehouseapp.py</url>
+          <line>136</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/warehouseapp.py</url>
+          <line>137</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/warehouseapp.py</url>
+          <line>143</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -221,7 +276,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="26" />
+      <option name="time" value="41" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -279,16 +334,6 @@
     <entry file="file://$PROJECT_DIR$/warehouse-grid.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/pyqt_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="65" column="14" selection-start-line="65" selection-start-column="14" selection-end-line="65" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/networkx/algorithms/shortest_paths/weighted.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4784">
@@ -296,22 +341,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/warehouseapp.py">
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/codecs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="209" column="25" selection-start-line="209" selection-start-column="25" selection-end-line="209" selection-end-column="25" />
+        <state relative-caret-position="154">
+          <caret line="310" selection-start-line="310" selection-end-line="310" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyqt_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="65" column="14" selection-start-line="65" selection-start-column="14" selection-end-line="65" selection-end-column="14" />
           <folding>
-            <element signature="e#90#100#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/graphtest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+        <state relative-caret-position="407">
+          <caret line="36" column="23" lean-forward="true" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/warehouseapp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="232" column="23" lean-forward="true" selection-start-line="232" selection-start-column="23" selection-end-line="232" selection-end-column="23" />
+          <folding>
+            <element signature="e#90#100#0" expanded="true" />
           </folding>
         </state>
       </provider>
