@@ -2,7 +2,7 @@ __author__ = 'Yuan Qin'
 __date__ = "4/5/2018"
 __projectname__ = "warehouse application"
 
-
+import cProfile
 import csv
 import sys
 import graphtest
@@ -323,13 +323,15 @@ def originalorder(oneorder,x_init,y_init,x_end,y_end):
 
 def singleOrder(oneorder,x_init,y_init,x_end,y_end):
     if oneorder == None:
-        oneorder = []
-        orderlist = input("Hello User, what items would you like to pick?: use tab to separate: ")
-        spamorderlist = orderlist.split('\t')
-
-        for element in spamorderlist:
-            oneorder.append(int(element))
-    print ('The order ready to pick: ', oneorder)
+    #     oneorder = []
+    #     orderlist = input("Hello User, what items would you like to pick?: use tab to separate: ")
+    #     spamorderlist = orderlist.split('\t')
+    #
+    #     for element in spamorderlist:
+    #         oneorder.append(int(element))
+    # print ('The order ready to pick: ', oneorder)
+    # nextline for profiling
+        oneorder=[219130,365285,364695]
 
     dist_org=originalorder(oneorder,x_init,y_init,x_end,y_end)
     orig=[]
@@ -392,8 +394,8 @@ def processorder(x_init, y_init, x_end, y_end):
     choice = input("Hello User, input manually: yes? no?")
     if choice == "yes" or choice == "Yes" or choice == "YES":
         # input single order
-        org, origl, opt, min = singleOrder(None, x_init, y_init, x_end, y_end)
-
+        # org, origl, opt, min = singleOrder(None, x_init, y_init, x_end, y_end)
+        cProfile.run("org, origl, opt, min = singleOrder(None, x_init, y_init, x_end, y_end)", sort="cumulative")
         print('write into file......')
         i = 0
         optorderfile = input("Please list output file name: \n >")
@@ -462,24 +464,20 @@ if __name__ == '__main__':
 
 
 
+    #cProfile.run("readin()", sort="cumulative")
     readin()
+
+
     pathgraph = nx.Graph()
+    # cProfile.run("pathgraph = createpathg(max_x,max_y,2,1)", sort="cumulative")
     pathgraph = createpathg(max_x,max_y,2,1)
 
+
     x_init, y_init, x_end, y_end = inputpara()
+
     processorder(x_init, y_init, x_end, y_end)
 
 
-
-    # input order file
-
-    # orderfile = raw_input("Please list order file name: \n >")
-    # readorder(orderfile)
-
-
-
-    # for oneorder in optorderlist:
-    # optorderlist.append(shortestpath(oneorder, x_init, y_init, x_end, y_end))
 
     # #test
     # a = [[1, 2, 3, 4], [2, 3, 234, 5, 643, 4, 4]]

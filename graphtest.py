@@ -1,5 +1,5 @@
 import networkx as nx
-
+import cProfile
 
 
 import numpy as np
@@ -85,11 +85,10 @@ if __name__ == '__main__':
     # print pathgraph.edges
     # end pathgraph
 
-    itemdist = locdistance(pathgraph)
-    # 396794
-    # 944530
-    # 944526
-    # 944527
+    # itemdist = locdistance(pathgraph)
+
+    cProfile.run("itemdist = locdistance(pathgraph)", sort="cumulative")
+
     # print 'total node number: ',nodenumber
     # SG = G.subgraph([n for n, attrdict in G.node.items() if attrdict['type'] == 'X'])
 

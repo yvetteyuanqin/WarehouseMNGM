@@ -1,8 +1,0 @@
-Commandline input:
-
-python warehouseapp.py [id number] ([initial position x] [initial position y])
-
-eg.
-python warehouseapp.py 45 2 2
-
-Initial position x and y are (0,0) if not specified
