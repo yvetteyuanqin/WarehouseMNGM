@@ -1,67 +1,120 @@
-import sys
-
-from PyQt5.QtWidgets import QApplication, QMainWindow, QMenu, QVBoxLayout, QSizePolicy, QMessageBox, QWidget, \
-    QPushButton
-from PyQt5.QtGui import QIcon
-
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.figure import Figure
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
+import networkx as nx
 
-import random
+class PrettyWidget(QWidget):
 
-
-class App(QMainWindow):
+    NumButtons = ['plot1','plot2', 'plot3']
 
     def __init__(self):
-        super().__init__()
-        self.left = 10
-        self.top = 10
-        self.title = 'PyQt5 matplotlib example - pythonspot.com'
-        self.width = 640
-        self.height = 400
+
+
+        super(PrettyWidget, self).__init__()
+        font = QFont()
+        font.setPointSize(16)
         self.initUI()
 
     def initUI(self):
-        self.setWindowTitle(self.title)
-        self.setGeometry(self.left, self.top, self.width, self.height)
 
-        m = PlotCanvas(self, width=5, height=4)
-        m.move(0, 0)
+        self.setGeometry(100, 100, 800, 600)
+        self.center()
+        self.setWindowTitle('S Plot')
 
-        button = QPushButton('PyQt5 button', self);
-        button.setToolTip('This is an example button')
-        button.move(500, 0)
-        button.resize(140, 100)
+        grid = QGridLayout()
+        self.setLayout(grid)
+        self.createVerticalGroupBox()
+
+        buttonLayout = QVBoxLayout()
+        buttonLayout.addWidget(self.verticalGroupBox)
+
+        self.figure = plt.figure()
+        self.canvas = FigureCanvas(self.figure)
+        grid.addWidget(self.canvas, 0, 1, 9, 9)
+        grid.addLayout(buttonLayout, 0, 0)
 
         self.show()
 
 
-class PlotCanvas(FigureCanvas):
+    def createVerticalGroupBox(self):
+        self.verticalGroupBox = QGroupBox()
 
-    def __init__(self, parent=None, width=5, height=4, dpi=100):
-        fig = Figure(figsize=(width, height), dpi=dpi)
-        self.axes = fig.add_subplot(111)
+        layout = QVBoxLayout()
+        for i in  self.NumButtons:
+                button = QPushButton(i)
+                button.setObjectName(i)
+                layout.addWidget(button)
+                layout.setSpacing(10)
+                self.verticalGroupBox.setLayout(layout)
+                button.clicked.connect(self.submitCommand)
 
-        FigureCanvas.__init__(self, fig)
-        self.setParent(parent)
+    def submitCommand(self):
+        eval('self.' + str(self.sender().objectName()) + '()')
 
-        FigureCanvas.setSizePolicy(self,
-                                   QSizePolicy.Expanding,
-                                   QSizePolicy.Expanding)
-        FigureCanvas.updateGeometry(self)
-        self.plot()
 
-    def plot(self):
-        data = [random.random() for i in range(25)]
-        ax = self.figure.add_subplot(111)
-        ax.plot(data, 'r-')
-        ax.set_title('PyQt Matplotlib Example')
-        self.draw()
 
+    def plot1(self):
+        self.figure.clf()
+        ax1 = self.figure.add_subplot(211)
+        x1 = [i for i in range(100)]
+        y1 = [i**0.5 for i in x1]
+        ax1.plot(x1, y1, 'b.-')
+
+        ax2 = self.figure.add_subplot(212)
+        x2 = [i for i in range(100)]
+        y2 = [i for i in x2]
+        ax2.plot(x2, y2, 'b.-')
+        self.canvas.draw_idle()
+
+    def plot2(self):
+        self.figure.clf()
+        ax3 = self.figure.add_subplot(111)
+        x = [i for i in range(100)]
+        y = [i**0.5 for i in x]
+        ax3.plot(x, y, 'r.-')
+        ax3.set_title('Square Root Plot')
+        self.canvas.draw_idle()
+
+    def plot3(self):
+        self.figure.clf()
+        B = nx.Graph()
+        B.add_nodes_from([1, 2, 3, 4], bipartite=0)
+        B.add_nodes_from(['a', 'b', 'c', 'd', 'e'], bipartite=1)
+        B.add_edges_from([(1, 'a'), (2, 'c'), (3, 'd'), (3, 'e'), (4, 'e'), (4, 'd')])
+
+        X = set(n for n, d in B.nodes(data=True) if d['bipartite'] == 0)
+        Y = set(B) - X
+
+        X = sorted(X, reverse=True)
+        Y = sorted(Y, reverse=True)
+
+        pos = dict()
+        pos.update( (n, (1, i)) for i, n in enumerate(X) ) # put nodes from X at x=1
+        pos.update( (n, (2, i)) for i, n in enumerate(Y) ) # put nodes from Y at x=2
+        nx.draw(B, pos=pos, with_labels=True)
+        self.canvas.draw_idle()
+
+    def center(self):
+        qr = self.frameGeometry()
+        cp = QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
 
 if __name__ == '__main__':
+
+    import sys
     app = QApplication(sys.argv)
-    print(sys.argv)
-    ex = App()
+    app.aboutToQuit.connect(app.deleteLater)
+    app.setStyle(QStyleFactory.create("gtk"))
+    screen = PrettyWidget()
+    screen.show()
     sys.exit(app.exec_())
+
+"""
+Modify base on:
+http://stackoverflow.com/questions/36086361/embed-matplotlib-in-pyqt-with-multiple-plot/36093604
+
+"""

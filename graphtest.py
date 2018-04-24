@@ -20,7 +20,8 @@ def locdistance(pathgraph,des_x=0,des_y=20,init_x=0,init_y=0):
     # look for the key number of node according to location given
     # pgone = pathgraph.subgraph([i for i, node in pathgraph.nodes(data=True) if node['coordinate'] == [init_x, init_y]])
     # positioninit = int(list(pgone.node)[0])
-    # quicker
+
+    # quicker just by calculation
     positioninit = init_x/2*(2*max_y+1)+init_y
     positiondes = des_x / 2 * (2 * max_y + 1) + des_y
 
@@ -32,7 +33,7 @@ def locdistance(pathgraph,des_x=0,des_y=20,init_x=0,init_y=0):
 
     # compute shortest path and distance
 
-    traversednodelist = list(nx.dijkstra_path(pathgraph, positioninit, positiondes, 'distance'))
+    traversednodelist = list(nx.dijkstra_path(pathgraph, int(positioninit), int(positiondes), 'distance'))
 
     traversedpoint = []
     for node in traversednodelist:
@@ -40,13 +41,13 @@ def locdistance(pathgraph,des_x=0,des_y=20,init_x=0,init_y=0):
         traversedpoint.append(coordinates[node])
 
     # print out path
-    # print 'Traverse node: ', nx.dijkstra_path(pathgraph, positioninit, positiondes, 'distance')
-    # print 'According coordinate:', traversedpoint
-    # print 'with distance for one item:', nx.dijkstra_path_length(pathgraph, positioninit, positiondes, 'distance')
+    # print ('Traverse node: ', nx.dijkstra_path(pathgraph, positioninit, positiondes, 'distance'))
+    # print ('According coordinate:', traversedpoint)
+    # print ('with distance for one item:', nx.dijkstra_path_length(pathgraph, positioninit, positiondes, 'distance'))
 
     itemdistance = nx.dijkstra_path_length(pathgraph, positioninit, positiondes, 'distance')
     # print(itemdistance)
-    return itemdistance
+    return itemdistance,traversedpoint
     # distance = nx.get_edge_attributes(pathgraph, 'distance')
     # print distance[(0, 21)]
     # print list(pathgraph.edges)[0][1]
@@ -85,9 +86,9 @@ if __name__ == '__main__':
     # print pathgraph.edges
     # end pathgraph
 
-    # itemdist = locdistance(pathgraph)
-
-    cProfile.run("itemdist = locdistance(pathgraph)", sort="cumulative")
+    itemdist,traversed = locdistance(pathgraph,0,20,0,0)
+    print (itemdist)
+    # cProfile.run("itemdist = locdistance(pathgraph)", sort="cumulative")
 
     # print 'total node number: ',nodenumber
     # SG = G.subgraph([n for n, attrdict in G.node.items() if attrdict['type'] == 'X'])

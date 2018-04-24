@@ -3,6 +3,7 @@ __date__ = "4/5/2018"
 __projectname__ = "warehouse application"
 
 import cProfile
+import memory_profiler
 import csv
 import sys
 import graphtest
@@ -26,7 +27,7 @@ optorderlist = []
 optorderdetail = []
 pathnode = nx.Graph()
 dist_dict = {}
-pathgraph = nx.Graph()
+# pathgraph = nx.Graph()
 optoneordertemp = []
 # readin products location
 def readin():
@@ -64,7 +65,7 @@ def readorder(s):
         # print orderlist
 
 # find shortest distance between two points
-def findpath(pro_id,init_x = 0, init_y = 0):
+def findpath(pathgraph,pro_id,init_x = 0, init_y = 0):
     pro_id = int(pro_id)
     if pro_id not in loc_dict:
         print ("id not exist")
@@ -94,7 +95,7 @@ def findpath(pro_id,init_x = 0, init_y = 0):
     else:
         des_x = init_x
         des_y = pro_y
-    itemdistance = graphtest.locdistance(pathgraph,des_x, des_y,init_x,init_y)
+    itemdistance,traversed= graphtest.locdistance(pathgraph,des_x, des_y,init_x,init_y)
     return itemdistance, des_x, des_y
 
 
@@ -166,7 +167,9 @@ def shortestdp(node,subset): #calculate from start
 
 
 #rearrange and optimize the order order
-def optimizeorder(oneorder,init_x,init_y,end_x,end_y):
+# compile with flag:python -m memory_profiler example.py
+# @profile
+def optimizeorder(pathgraph,oneorder,init_x,init_y,end_x,end_y):
     # construct graph and distance dictionary between graph
     ordergraph = nx.Graph()
     optoneorder = []
@@ -178,9 +181,9 @@ def optimizeorder(oneorder,init_x,init_y,end_x,end_y):
         ordergraph.add_node(item_no)
 
         # calculate from these item to end or from original to these item
-        d0, des_x, des_y = findpath(item_no,init_x,init_y)#from original is 'start'
+        d0, des_x, des_y = findpath(pathgraph,item_no,init_x,init_y)#from original is 'start'
         dist_dict[('start',item_no)] = d0
-        df = graphtest.locdistance(pathgraph,end_x,end_y,des_x,des_y)#to end
+        df,traversed= graphtest.locdistance(pathgraph,end_x,end_y,des_x,des_y)#to end
         dist_dict[(item_no,'end')] = df
         ordergraph.add_edge('start', item_no,length = d0)
         ordergraph.add_edge('end', item_no,length = df)
@@ -220,30 +223,41 @@ def optimizeorder(oneorder,init_x,init_y,end_x,end_y):
     # nearest neighbor
     print("Computing greedily shortest distance to travel ......")
     start = time.time()
-    nodespair = list(itertools.combinations(oneorder, 2))
-    ordergraph.add_edges_from(nodespair)
-    # heuristics,not known:start from nowhere? distance between 2 items,+-1
-    for pair in nodespair:
-        d, des_x, des_y = findpath(pair[0])
-        pathlength, x, y = findpath(pair[1], des_x, des_y)
-        # add graph edge
-        ordergraph.add_edge(pair[0], pair[1], length=pathlength)
-        dist_dict[(pair[0], pair[1])] = pathlength
-        dist_dict[(pair[1], pair[0])] = pathlength
-    firstitem = 'start'
+    # nodespair = list(itertools.combinations(oneorder, 2))
+    # ordergraph.add_edges_from(nodespair)
+    # # heuristics,not known:start from nowhere? distance between 2 items,+-1
+    # for pair in nodespair:
+    #     d, des_x, des_y = findpath(pair[0])
+    #     pathlength, x, y = findpath(pair[1], des_x, des_y)
+    #     # add graph edge
+    #     ordergraph.add_edge(pair[0], pair[1], length=pathlength)
+    #     dist_dict[(pair[0], pair[1])] = pathlength
+    #     dist_dict[(pair[1], pair[0])] = pathlength
+
     itemtemp = 0
     mindist = 0
+    x=init_x
+    y=init_y
+    temp_x=None
+    temp_y=None
     while oneorder !=[]:
         min = 10000
         for item in oneorder:
-            if dist_dict[(firstitem,item)]<min:
-                min = dist_dict[(firstitem,item)]
+            pathlength, des_x, des_y = findpath(pathgraph,item, x, y)
+
+            if pathlength<min:
+                min = pathlength
                 itemtemp = item
-        firstitem=itemtemp
-        optoneorder.append(firstitem)
-        oneorder.remove(firstitem)
+                temp_x=des_x
+                temp_y=des_y
+
+
+        optoneorder.append(itemtemp)
+        oneorder.remove(itemtemp)
         mindist = mindist + min
-    mindist = mindist + dist_dict[(firstitem,'end')]#to drop off point
+        x=temp_x
+        y=temp_y
+    mindist = mindist + graphtest.locdistance(pathgraph,end_x,end_y,x,y)[0]#to drop off point
 
     print('Minimum travel distance: ', mindist, ',in order of: ', 'start from ', (init_x, init_y), optoneorder, ', end at ',
           (end_x, end_y))
@@ -302,11 +316,11 @@ def optimizeorder(oneorder,init_x,init_y,end_x,end_y):
     '''
     return optoneorder,min
 
-def originalorder(oneorder,x_init,y_init,x_end,y_end):
+def originalorder(pathgraph,oneorder,x_init,y_init,x_end,y_end):
     # original order
     dist_oneorder = 0
     for item in oneorder:
-        dist, x_des, y_des = findpath(item,x_init,y_init)
+        dist, x_des, y_des = findpath(pathgraph,item,x_init,y_init)
         x_init = x_des
         y_init = y_des
         dist_oneorder = dist_oneorder + dist
@@ -314,31 +328,34 @@ def originalorder(oneorder,x_init,y_init,x_end,y_end):
     # back to end point
 
     # print"returning to end point......"
-    backtrip = graphtest.locdistance(pathgraph,x_init,y_init,x_end,y_end)
+    backtrip,traversed= graphtest.locdistance(pathgraph,x_init,y_init,x_end,y_end)
     dist_oneorder = dist_oneorder + backtrip
 
     print ('Distance for one order without optimization', dist_oneorder)
     return dist_oneorder
 
 
-def singleOrder(oneorder,x_init,y_init,x_end,y_end):
+def singleOrder(pathgraph,oneorder,x_init,y_init,x_end,y_end):
     if oneorder == None:
-    #     oneorder = []
-    #     orderlist = input("Hello User, what items would you like to pick?: use tab to separate: ")
-    #     spamorderlist = orderlist.split('\t')
-    #
-    #     for element in spamorderlist:
-    #         oneorder.append(int(element))
-    # print ('The order ready to pick: ', oneorder)
-    # nextline for profiling
-        oneorder=[219130,365285,364695]
+        oneorder = []
+        orderlist = input("Hello User, what items would you like to pick?: use tab to separate: ")
+        spamorderlist = orderlist.split('\t')
 
-    dist_org=originalorder(oneorder,x_init,y_init,x_end,y_end)
+        for element in spamorderlist:
+            oneorder.append(int(element))
+    print ('The order ready to pick: ', oneorder)
+    print()
+    # nextline for time profiling
+    #     oneorder=[427230,372539,396879,391680,208660,105912,332555,227534,68048,188856,736830,736831,479020,103313,365797,97077,117900,384900,769581,1372184,226774]
+    #     oneorder = [176484,245818,195946,272457,354111,103926,106685,260033,306104,397673,16643,193618,180958,226774,392017,154454,287261,111873,391857,393069,1400578]
+    #     oneorder=[337003,394165,309096,383371,176484,1190168,71795,41100,204756,96509,1588730,239436,151579,285408,34182,306176,180023,32895,191515,327710,156753]
+
+    dist_org=originalorder(pathgraph,oneorder,x_init,y_init,x_end,y_end)
     orig=[]
     for element in oneorder:
         orig.append(element)
 
-    optoneorder,mintravel=optimizeorder(oneorder,x_init,y_init,x_end,y_end)
+    optoneorder,mintravel=optimizeorder(pathgraph,oneorder,x_init,y_init,x_end,y_end)
 
     return orig,dist_org,optoneorder,mintravel
 
@@ -390,12 +407,12 @@ def inputpara():
         y_end = 20
     return x_init, y_init, x_end, y_end
 
-def processorder(x_init, y_init, x_end, y_end):
+def processorder(pathgraph,x_init, y_init, x_end, y_end):
     choice = input("Hello User, input manually: yes? no?")
     if choice == "yes" or choice == "Yes" or choice == "YES":
         # input single order
-        # org, origl, opt, min = singleOrder(None, x_init, y_init, x_end, y_end)
-        cProfile.run("org, origl, opt, min = singleOrder(None, x_init, y_init, x_end, y_end)", sort="cumulative")
+        org, origl, opt, min = singleOrder(pathgraph,None, x_init, y_init, x_end, y_end)
+        # cProfile.run("org, origl, opt, min = singleOrder(None, x_init, y_init, x_end, y_end)", sort="cumulative")
         print('write into file......')
         i = 0
         optorderfile = input("Please list output file name: \n >")
@@ -425,7 +442,7 @@ def processorder(x_init, y_init, x_end, y_end):
 
         for i in range(0,len(orderlist)):
             oneorder = orderlist[i]
-            org,origl,opt,min=singleOrder(oneorder,x_init, y_init, x_end, y_end)
+            org,origl,opt,min=singleOrder(pathgraph,oneorder,x_init, y_init, x_end, y_end)
             print ("number processed:",i+1)
             optorderlist.append(opt)
 
@@ -475,7 +492,7 @@ if __name__ == '__main__':
 
     x_init, y_init, x_end, y_end = inputpara()
 
-    processorder(x_init, y_init, x_end, y_end)
+    processorder(pathgraph,x_init, y_init, x_end, y_end)
 
 
 
