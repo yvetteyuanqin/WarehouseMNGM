@@ -299,3 +299,17 @@ Original order:   	1
 Optimized order:	1
 Original parts distance:	24
 Optimized parts distance:	24
+Order number:	0
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	108335	391825	340367	286457	661741
+Optimized order:	340367	661741	286457	391825	108335
+Original parts distance:	76
+Optimized parts distance:	70
+Order number:	0
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	352109	397889	386850	380489	287261
+Optimized order:	287261	380489	352109	397889	386850
+Original parts distance:	48
+Optimized parts distance:	40

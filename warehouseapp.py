@@ -28,7 +28,7 @@ optorderdetail = []
 pathnode = nx.Graph()
 dist_dict = {}
 # pathgraph = nx.Graph()
-optoneordertemp = []
+
 # readin products location
 def readin():
 
@@ -220,6 +220,11 @@ def optimizeorder(pathgraph,oneorder,init_x,init_y,end_x,end_y):
     print('Dynamic programming cost:', end - start)
 
     '''
+
+    #debug use, calculate lower bound
+    if __debug__:
+        print("Calculating lower bound......")
+
     # nearest neighbor
     print("Computing greedily shortest distance to travel ......")
     start = time.time()
@@ -235,33 +240,59 @@ def optimizeorder(pathgraph,oneorder,init_x,init_y,end_x,end_y):
     #     dist_dict[(pair[1], pair[0])] = pathlength
 
     itemtemp = 0
-    mindist = 0
+
     x=init_x
     y=init_y
     temp_x=None
     temp_y=None
-    while oneorder !=[]:
-        min = 10000
-        for item in oneorder:
-            pathlength, des_x, des_y = findpath(pathgraph,item, x, y)
+    itemshift = 0
+    oneordertemp=[]
+    optoneordertemp = []
+    mindist=10000
+    init_x_l=0
+    init_y_l=0
+    for i in range(len(oneorder)-1):
+        itemshift = oneorder.pop(0)
+        oneorder.append(itemshift)
+        oneordertemp=oneorder[:]
+        print("after shift:",oneorder)
+        mindisttemp = 0
+        while oneorder !=[]:
+            min = 10000
+            for item in oneorder:
+                pathlength, des_x, des_y = findpath(pathgraph,item, x, y)
 
-            if pathlength<min:
-                min = pathlength
-                itemtemp = item
-                temp_x=des_x
-                temp_y=des_y
+                if pathlength<min:
+                    min = pathlength
+                    itemtemp = item
+                    temp_x=des_x
+                    temp_y=des_y
 
 
-        optoneorder.append(itemtemp)
-        oneorder.remove(itemtemp)
-        mindist = mindist + min
-        x=temp_x
-        y=temp_y
-    mindist = mindist + graphtest.locdistance(pathgraph,end_x,end_y,x,y)[0]#to drop off point
+            optoneordertemp.append(itemtemp)
+            oneorder.remove(itemtemp)
+            mindisttemp = mindisttemp + min
+            x=temp_x
+            y=temp_y
+        mindisttemp=mindisttemp+graphtest.locdistance(pathgraph,end_x,end_y,x,y)[0]#to drop off point
+        print("mindist:",mindisttemp)
+        print("one optimized:",optoneordertemp)
+        if mindisttemp<mindist:
+            mindist=mindisttemp
+            init_x_l=x
+            init_y_l=y
+            optoneorder=optoneordertemp[:]
+
+        oneorder=oneordertemp[:]
+        optoneordertemp = []
+        oneordertemp=[]
+        x = init_x
+        y = init_y
+    # mindist = mindist + graphtest.locdistance(pathgraph,end_x,end_y,init_x_l,init_y_l)[0]#to drop off point
 
     print('Minimum travel distance: ', mindist, ',in order of: ', 'start from ', (init_x, init_y), optoneorder, ', end at ',
           (end_x, end_y))
-    loclist = []
+
     for item in optoneorder:
         print('go to shelf:', shelf_dict[item], 'on location:', loc_dict[item], 'pick up item:', item, ', then ', )
     # measure time
