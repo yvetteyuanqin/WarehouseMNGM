@@ -10,6 +10,7 @@ import graphtest
 import networkx as nx
 import itertools
 import time
+import matplotlib.pyplot as plt
 # import cProfile
 # import matplotlib.pyplot as plt
 # import pyqt_test
@@ -174,19 +175,19 @@ def optimizeorder(pathgraph,oneorder,init_x,init_y,end_x,end_y):
     ordergraph = nx.Graph()
     optoneorder = []
     orderloc = []
-    ordergraph.add_node('start')
-    ordergraph.add_node('end')
-    for item_no in oneorder:
-        orderloc.append(loc_dict[item_no])
-        ordergraph.add_node(item_no)
+    ordergraph.add_node('start',pos=(init_x,init_y))
+    ordergraph.add_node('end',pos=(end_x,end_y))
 
+    for item_no in oneorder:
+        ordergraph.add_node(item_no, pos=(loc_dict[item_no][0], loc_dict[item_no][1]))
+        orderloc.append(loc_dict[item_no])
         # calculate from these item to end or from original to these item
         d0, des_x, des_y = findpath(pathgraph,item_no,init_x,init_y)#from original is 'start'
         dist_dict[('start',item_no)] = d0
         df,traversed= graphtest.locdistance(pathgraph,end_x,end_y,des_x,des_y)#to end
         dist_dict[(item_no,'end')] = df
-        ordergraph.add_edge('start', item_no,length = d0)
-        ordergraph.add_edge('end', item_no,length = df)
+        ordergraph.add_edge('start', item_no,weight = d0)
+        ordergraph.add_edge('end', item_no,weight = df)
     '''
     # Dynamic programming
     print("Dynamic programming shortest distance to travel ......")
@@ -224,6 +225,31 @@ def optimizeorder(pathgraph,oneorder,init_x,init_y,end_x,end_y):
     #debug use, calculate lower bound
     if __debug__:
         print("Calculating lower bound......")
+        nodespair = list(itertools.combinations(oneorder, 2))
+
+        # heuristics,not known:start from nowhere? distance between 2 items,+-1
+        for pair in nodespair:
+            pro_x = loc_dict[pair[0]][0]  # x,y coordinates of products
+            pro_y = loc_dict[pair[0]][1]
+            pathlength, xtmp, ytmp = findpath(pathgraph,pair[1],pro_x-1,pro_y)
+            # add graph edge
+            ordergraph.add_edge(pair[0], pair[1], weight=pathlength)
+        print (ordergraph.edges(data=True))
+        pos = nx.get_node_attributes(ordergraph, 'pos')
+        nx.draw_networkx(ordergraph,pos)
+        labels = nx.get_edge_attributes(ordergraph, 'weight')
+        nx.draw_networkx_edge_labels(ordergraph, pos, edge_labels=labels)
+        plt.show(block=False)
+        time.sleep(5)
+        plt.close()
+        T = nx.minimum_spanning_tree(ordergraph)
+        print(T.edges(data=True))
+        pos = nx.get_node_attributes(T, 'pos')
+        nx.draw_networkx(T, pos)
+        labels = nx.get_edge_attributes(T, 'weight')
+        nx.draw_networkx_edge_labels(T, pos, edge_labels=labels)
+        plt.show()
+
 
     # nearest neighbor
     print("Computing greedily shortest distance to travel ......")
