@@ -10,6 +10,7 @@ import graphtest
 import networkx as nx
 import itertools
 import time
+import matplotlib.pyplot as plt
 # import cProfile
 # import matplotlib.pyplot as plt
 # import pyqt_test
@@ -28,7 +29,7 @@ optorderdetail = []
 pathnode = nx.Graph()
 dist_dict = {}
 # pathgraph = nx.Graph()
-optoneordertemp = []
+
 # readin products location
 def readin():
 
@@ -174,19 +175,19 @@ def optimizeorder(pathgraph,oneorder,init_x,init_y,end_x,end_y):
     ordergraph = nx.Graph()
     optoneorder = []
     orderloc = []
-    ordergraph.add_node('start')
-    ordergraph.add_node('end')
-    for item_no in oneorder:
-        orderloc.append(loc_dict[item_no])
-        ordergraph.add_node(item_no)
+    ordergraph.add_node('start',pos=(init_x,init_y))
+    ordergraph.add_node('end',pos=(end_x,end_y))
 
+    for item_no in oneorder:
+        ordergraph.add_node(item_no, pos=(loc_dict[item_no][0], loc_dict[item_no][1]))
+        orderloc.append(loc_dict[item_no])
         # calculate from these item to end or from original to these item
         d0, des_x, des_y = findpath(pathgraph,item_no,init_x,init_y)#from original is 'start'
         dist_dict[('start',item_no)] = d0
         df,traversed= graphtest.locdistance(pathgraph,end_x,end_y,des_x,des_y)#to end
         dist_dict[(item_no,'end')] = df
-        ordergraph.add_edge('start', item_no,length = d0)
-        ordergraph.add_edge('end', item_no,length = df)
+        ordergraph.add_edge('start', item_no,weight = d0)
+        ordergraph.add_edge('end', item_no,weight = df)
     '''
     # Dynamic programming
     print("Dynamic programming shortest distance to travel ......")
@@ -220,6 +221,36 @@ def optimizeorder(pathgraph,oneorder,init_x,init_y,end_x,end_y):
     print('Dynamic programming cost:', end - start)
 
     '''
+
+    #debug use, calculate lower bound
+    if __debug__:
+        print("Calculating lower bound......")
+        nodespair = list(itertools.combinations(oneorder, 2))
+
+        # heuristics,not known:start from nowhere? distance between 2 items,+-1
+        for pair in nodespair:
+            pro_x = loc_dict[pair[0]][0]  # x,y coordinates of products
+            pro_y = loc_dict[pair[0]][1]
+            pathlength, xtmp, ytmp = findpath(pathgraph,pair[1],pro_x-1,pro_y)
+            # add graph edge
+            ordergraph.add_edge(pair[0], pair[1], weight=pathlength)
+        print (ordergraph.edges(data=True))
+        pos = nx.get_node_attributes(ordergraph, 'pos')
+        nx.draw_networkx(ordergraph,pos)
+        labels = nx.get_edge_attributes(ordergraph, 'weight')
+        nx.draw_networkx_edge_labels(ordergraph, pos, edge_labels=labels)
+        plt.show(block=False)
+        time.sleep(5)
+        plt.close()
+        T = nx.minimum_spanning_tree(ordergraph)
+        print(T.edges(data=True))
+        pos = nx.get_node_attributes(T, 'pos')
+        nx.draw_networkx(T, pos)
+        labels = nx.get_edge_attributes(T, 'weight')
+        nx.draw_networkx_edge_labels(T, pos, edge_labels=labels)
+        plt.show()
+
+
     # nearest neighbor
     print("Computing greedily shortest distance to travel ......")
     start = time.time()
@@ -235,33 +266,59 @@ def optimizeorder(pathgraph,oneorder,init_x,init_y,end_x,end_y):
     #     dist_dict[(pair[1], pair[0])] = pathlength
 
     itemtemp = 0
-    mindist = 0
+
     x=init_x
     y=init_y
     temp_x=None
     temp_y=None
-    while oneorder !=[]:
-        min = 10000
-        for item in oneorder:
-            pathlength, des_x, des_y = findpath(pathgraph,item, x, y)
+    itemshift = 0
+    oneordertemp=[]
+    optoneordertemp = []
+    mindist=10000
+    init_x_l=0
+    init_y_l=0
+    for i in range(len(oneorder)-1):
+        itemshift = oneorder.pop(0)
+        oneorder.append(itemshift)
+        oneordertemp=oneorder[:]
+        print("after shift:",oneorder)
+        mindisttemp = 0
+        while oneorder !=[]:
+            min = 10000
+            for item in oneorder:
+                pathlength, des_x, des_y = findpath(pathgraph,item, x, y)
 
-            if pathlength<min:
-                min = pathlength
-                itemtemp = item
-                temp_x=des_x
-                temp_y=des_y
+                if pathlength<min:
+                    min = pathlength
+                    itemtemp = item
+                    temp_x=des_x
+                    temp_y=des_y
 
 
-        optoneorder.append(itemtemp)
-        oneorder.remove(itemtemp)
-        mindist = mindist + min
-        x=temp_x
-        y=temp_y
-    mindist = mindist + graphtest.locdistance(pathgraph,end_x,end_y,x,y)[0]#to drop off point
+            optoneordertemp.append(itemtemp)
+            oneorder.remove(itemtemp)
+            mindisttemp = mindisttemp + min
+            x=temp_x
+            y=temp_y
+        mindisttemp=mindisttemp+graphtest.locdistance(pathgraph,end_x,end_y,x,y)[0]#to drop off point
+        print("mindist:",mindisttemp)
+        print("one optimized:",optoneordertemp)
+        if mindisttemp<mindist:
+            mindist=mindisttemp
+            init_x_l=x
+            init_y_l=y
+            optoneorder=optoneordertemp[:]
+
+        oneorder=oneordertemp[:]
+        optoneordertemp = []
+        oneordertemp=[]
+        x = init_x
+        y = init_y
+    # mindist = mindist + graphtest.locdistance(pathgraph,end_x,end_y,init_x_l,init_y_l)[0]#to drop off point
 
     print('Minimum travel distance: ', mindist, ',in order of: ', 'start from ', (init_x, init_y), optoneorder, ', end at ',
           (end_x, end_y))
-    loclist = []
+
     for item in optoneorder:
         print('go to shelf:', shelf_dict[item], 'on location:', loc_dict[item], 'pick up item:', item, ', then ', )
     # measure time
@@ -395,16 +452,22 @@ def inputpara():
 
     x_init, y_init = input("Hello User, where is your worker? please enter: x,y:  if exceeds,default 0,0 \n > ").split(
         ',')
+    x_init=int(x_init)
+    y_init=int(y_init)
     # print type(x_init) is not int or type(x_init) is not int or x_init > 36 or y_init > 20
-    if type(x_init) is not int or type(x_init) is not int or x_init > 36 or y_init > 20:
+    if x_init > 36 or y_init > 20:
         x_init = 0
         y_init = 0
     x_end, y_end = input("What is your worker's end location? please enter x,y:  if exceeds, default 0,20 \n > ").split(
         ',')
     # print type(x_end) is not int or type(x_end) is not int or x_end > 36 or y_end > 20
-    if type(x_end) is not int or type(x_end) is not int or x_end > 36 or y_end > 20:
+    x_end=int(x_end)
+    y_end=int(y_end)
+    if  x_end > 36 or y_end > 20:
         x_end = 0
         y_end = 20
+
+    print(x_init, y_init, x_end, y_end)
     return x_init, y_init, x_end, y_end
 
 def processorder(pathgraph,x_init, y_init, x_end, y_end):

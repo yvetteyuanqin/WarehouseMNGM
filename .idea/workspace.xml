@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b30edc8a-4958-42f7-b4cd-e062a782d1fc" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/report2.5/res_neares.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report4a/YuanQin_Report4.pages" beforeDir="false" afterPath="$PROJECT_DIR$/report4a/YuanQin_Report4.pages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report4a/warehouseapp.py" beforeDir="false" afterPath="$PROJECT_DIR$/report4a/warehouseapp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/warehouseapp.py" beforeDir="false" afterPath="$PROJECT_DIR$/warehouseapp.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,11 +18,8 @@
       <file leaf-file-name="graphtest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/graphtest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="855">
-              <caret line="57" selection-start-line="57" selection-end-line="57" />
-              <folding>
-                <element signature="e#0#21#0" expanded="true" />
-              </folding>
+            <state>
+              <caret column="21" lean-forward="true" selection-start-column="21" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -32,7 +27,7 @@
       <file leaf-file-name="graphplot.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/graphplot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2944">
+            <state relative-caret-position="-2911">
               <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="31" />
             </state>
           </provider>
@@ -41,8 +36,8 @@
       <file leaf-file-name="warehouseapp.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/warehouseapp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1027">
-              <caret line="241" column="28" selection-start-line="241" selection-start-column="28" selection-end-line="241" selection-end-column="28" />
+            <state relative-caret-position="236">
+              <caret line="434" column="33" lean-forward="true" selection-start-line="434" selection-start-column="33" selection-end-line="434" selection-end-column="33" />
               <folding>
                 <element signature="e#89#104#0" expanded="true" />
               </folding>
@@ -50,32 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cProfile.py" pinned="false" current-in-tab="false">
-        <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/cProfile.py">
+      <file leaf-file-name="codecs.py" pinned="false" current-in-tab="false">
+        <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/codecs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="99" selection-start-line="99" selection-end-line="99" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="weighted.py" pinned="false" current-in-tab="false">
-        <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/networkx/algorithms/shortest_paths/weighted.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3390">
-              <caret line="230" selection-start-line="230" selection-end-line="230" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pyqt_test.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pyqt_test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="107" column="14" selection-start-line="107" selection-start-column="14" selection-end-line="107" selection-end-column="14" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="184">
+              <caret line="308" selection-start-line="308" selection-end-line="308" />
             </state>
           </provider>
         </entry>
@@ -91,36 +65,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>single</find>
-      <find>singleorder</find>
-      <find>originalorder</find>
-      <find>optimizeorder</find>
-      <find>[1</find>
-      <find>figure</find>
-      <find>x_init</find>
-      <find>center</find>
-      <find>locdis</find>
-      <find>print</find>
-      <find>according cor</find>
-      <find>plot3</find>
-      <find>ylim</find>
-      <find>plot</find>
-      <find>split</find>
-      <find>before</find>
-      <find>mindist</find>
-      <find>optoneorder</find>
-      <find>optoneordertemp</find>
-      <find>oneordertemp</find>
-      <find>0.0601</find>
-      <find>profil</find>
       <find>profile</find>
-      <find>oneorder</find>
       <find>1    0.000    0.000    0.219    0.219 warehouseapp.py:172(optimizeorder)</find>
-      <find>findpath</find>
       <find>length</find>
       <find>weight</find>
       <find>end_x</find>
       <find>x_end</find>
+      <find>inputpara</find>
+      <find>singleorder</find>
+      <find>optimizeorder</find>
+      <find>branch and bound</find>
+      <find>shelf_dict</find>
+      <find>loc_dict</find>
+      <find>orderloc</find>
+      <find>dist_dict</find>
+      <find>findpath</find>
+      <find>com</find>
+      <find>end')</find>
+      <find>('end')</find>
+      <find>redumatrix</find>
+      <find>mattemp</find>
+      <find>opt order</find>
+      <find>destemp</find>
+      <find>set</find>
+      <find>row[0]</find>
+      <find>i for</find>
+      <find>matrix dict</find>
+      <find>redumatr</find>
+      <find>reduroutine</find>
+      <find>oneorder</find>
+      <find>redur</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -222,12 +196,12 @@
       <window_info content_ui="combo" id="Project" order="0" weight="0.13333334" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.43878788" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.42909092" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32900944" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3139394" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.48848486" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -240,21 +214,21 @@
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" weight="0.13333334" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32900944" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.42060605" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3148585" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32900944" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Python Console" order="7" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -262,6 +236,23 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/warehouseapp.py</url>
+          <line>419</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/warehouseapp.py</url>
+          <line>430</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/warehouseapp.py</url>
+          <line>437</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -269,17 +260,62 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="43" />
+      <option name="time" value="70" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/graphtest.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="57" selection-start-line="57" selection-end-line="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graphplot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/cProfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1470">
+          <caret line="99" selection-start-line="99" selection-end-line="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/networkx/algorithms/shortest_paths/weighted.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3390">
+          <caret line="230" selection-start-line="230" selection-end-line="230" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyqt_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1515">
+          <caret line="107" column="14" selection-start-line="107" selection-start-column="14" selection-end-line="107" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/warehouseapp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6855">
+          <caret line="465" column="7" selection-start-line="465" selection-start-column="7" selection-end-line="465" selection-end-column="7" />
+          <folding>
+            <element signature="e#89#104#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graphtest.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="855">
           <caret line="57" selection-start-line="57" selection-end-line="57" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -314,9 +350,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="795">
           <caret line="57" selection-start-line="57" selection-end-line="57" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -361,9 +394,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="27" column="92" lean-forward="true" selection-start-line="27" selection-start-column="92" selection-end-line="27" selection-end-column="92" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -398,13 +428,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="310" selection-start-line="310" selection-end-line="310" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/matplotlib/cbook/deprecation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -421,14 +444,14 @@
     </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/cProfile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
+        <state relative-caret-position="1470">
           <caret line="99" selection-start-line="99" selection-end-line="99" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pyqt_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
+        <state relative-caret-position="1515">
           <caret line="107" column="14" selection-start-line="107" selection-start-column="14" selection-end-line="107" selection-end-column="14" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
@@ -436,27 +459,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graphtest.py">
+    <entry file="file://$PROJECT_DIR$/graphplot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-2911">
+          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graphplot.py">
+    <entry file="file://$PROJECT_DIR$/graphtest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2944">
-          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="31" />
+        <state>
+          <caret column="21" lean-forward="true" selection-start-column="21" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="308" selection-start-line="308" selection-end-line="308" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/warehouseapp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1027">
-          <caret line="241" column="28" selection-start-line="241" selection-start-column="28" selection-end-line="241" selection-end-column="28" />
+        <state relative-caret-position="236">
+          <caret line="434" column="33" lean-forward="true" selection-start-line="434" selection-start-column="33" selection-end-line="434" selection-end-column="33" />
           <folding>
             <element signature="e#89#104#0" expanded="true" />
           </folding>

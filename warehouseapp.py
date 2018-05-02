@@ -28,6 +28,7 @@ optorderlist = []
 optorderdetail = []
 pathnode = nx.Graph()
 dist_dict = {}
+matrix_dict = {}
 # pathgraph = nx.Graph()
 
 # readin products location
@@ -174,13 +175,13 @@ def optimizeorder(pathgraph,oneorder,init_x,init_y,end_x,end_y):
     # construct graph and distance dictionary between graph
     ordergraph = nx.Graph()
     optoneorder = []
-    orderloc = []
+    # orderloc = []
     ordergraph.add_node('start',pos=(init_x,init_y))
     ordergraph.add_node('end',pos=(end_x,end_y))
 
     for item_no in oneorder:
         ordergraph.add_node(item_no, pos=(loc_dict[item_no][0], loc_dict[item_no][1]))
-        orderloc.append(loc_dict[item_no])
+        # orderloc.append(loc_dict[item_no])
         # calculate from these item to end or from original to these item
         d0, des_x, des_y = findpath(pathgraph,item_no,init_x,init_y)#from original is 'start'
         dist_dict[('start',item_no)] = d0
@@ -314,7 +315,6 @@ def optimizeorder(pathgraph,oneorder,init_x,init_y,end_x,end_y):
         oneordertemp=[]
         x = init_x
         y = init_y
-    # mindist = mindist + graphtest.locdistance(pathgraph,end_x,end_y,init_x_l,init_y_l)[0]#to drop off point
 
     print('Minimum travel distance: ', mindist, ',in order of: ', 'start from ', (init_x, init_y), optoneorder, ', end at ',
           (end_x, end_y))
@@ -373,6 +373,184 @@ def optimizeorder(pathgraph,oneorder,init_x,init_y,end_x,end_y):
     '''
     return optoneorder,min
 
+def matrixredu(matrix):#both matrix and cost are returned
+    mincost=0
+    cost=0
+    k=0
+    matred=[]
+
+    # reduce by row
+    for row in matrix:
+        if len([i for i in row if i is not None])==0 or min(i for i in row if i is not None) == 0:
+            matred.append(row)
+        else:
+            matred.append([])
+            mincost = min(i for i in row if i is not None)
+            for ele in row:
+                if ele != None:
+                    matred[k].append(ele-mincost)
+                else:
+                    matred[k].append(None)
+            cost = cost +mincost
+        k=k+1
+
+    #reduce by col
+    for i in range(len(matred[0])):
+        if 0 in [row[i] for row in matred]:
+            continue
+        else:
+            # if len([i for i in matred[i] if i is not None])!=0:
+            if len([n for n in [row[i] for row in matred] if n is not None])== 0 :#all col is none
+
+                continue
+            else:
+                mincost = min(n for n in [row[i] for row in matred] if n is not None)
+                cost=cost + mincost
+                for j in range(len(matred)):
+                    if matred[j][i]== None:
+                        continue
+                    matred[j][i] = matred[j][i]-mincost
+
+
+
+    return matred,cost
+
+def reduroutine(redumatrix,src,oneordertemp,oneorder,initcost):
+
+    redumatrixtemp=[row[:] for row in redumatrix]
+    redumatrixtemp[src]=[None]*len(redumatrixtemp)      #set source row to inf
+
+    minsubcost=10000
+    for des in range(1,len(redumatrix)):
+        if des==src or oneorder[des-1] not in oneordertemp:#both situation NONE i.e. inf
+            continue
+        for i in range(len(redumatrixtemp)):
+            redumatrixtemp[i][des]=None                 #set des col to inf
+
+        redumatrixtemp[des][src] = None             #set dest->src to inf
+        redumatrix2,subcost=matrixredu(redumatrixtemp)
+        print("In redu routine")
+        # for row in redumatrix:
+        #     print(row)
+        # for row in redumatrix2:
+        #     print(row)
+        print('check empt:', subcost, initcost, redumatrix[src][des],src,des)
+        subcost=subcost+initcost+redumatrix[src][des]#need solve!!!!!!!!!!!!!!!!!!!!!!! None, not exclude former node
+
+        # save to matrix_dict
+        matrix_dict[(des,src)]=[subcost,redumatrix2,list(set(oneordertemp)-{des})]#lower bound to this point,its redumatrix for future use, its remaining child nodes
+
+        if subcost< minsubcost:
+            minsubcost=subcost
+            mattemp=[row[:] for row in redumatrix2]
+            destemp=des
+        redumatrixtemp = [row[:] for row in redumatrix]  # for next destination cal
+        redumatrixtemp[src] = [None] * len(redumatrixtemp)  # set source row to inf
+    cost=minsubcost
+    print("matrix dict: ", matrix_dict)
+    '''
+    #get the minimum of dict
+    if min([row[0] for row in matrix_dict.values()]) <subcost:
+        minindex = [row[0] for row in a.values()].index(min([row[0] for row in a.values()]))
+        (destmin,srcmin)=matrix_dict.keys()[minindex]
+        if srcmin != src:#trace back to node in last level except from its parent
+            oneorder = matrix_dict[(*,srcmin)][2]# *= all dest
+            src =srcmin
+            redumatrix =matrix_dict[(*,srcmin)][1]
+    '''
+    # optoneorder.append(oneorder[destemp-1])
+    # oneorder.remove(oneorder[destemp-1])                  #move to main
+    # for row in mattemp:
+    #     print(row)
+    print ('cost:',cost)
+    return mattemp,destemp,cost
+
+
+#optimize order use branch and bound methods
+def branchnbound(pathgraph, oneorder, init_x, init_y, end_x, end_y):
+    # construct graph and distance dictionary between graph
+    ordergraph = nx.Graph()
+    optoneorder = []
+    matrix=[[None]]
+    redumatrix=[]
+    subcost=0
+    ordergraph.add_node('start', pos=(init_x, init_y))
+    ordergraph.add_node('end', pos=(end_x, end_y))
+
+    for item_no in oneorder:
+        ordergraph.add_node(item_no, pos=(loc_dict[item_no][0], loc_dict[item_no][1]))
+        # calculate from these item to end or from original to these item
+        d0, des_x, des_y = findpath(pathgraph, item_no, init_x, init_y)  # from original is 'start'
+        dist_dict[('start', item_no)] = d0
+        df, traversed = graphtest.locdistance(pathgraph, end_x, end_y, des_x, des_y)  # to end
+        dist_dict[(item_no, 'end')] = df
+        ordergraph.add_edge('start', item_no, weight=d0)
+        ordergraph.add_edge('end', item_no, weight=df)
+        matrix[0].append(d0)#source to distination  horizontal add
+        matrix.append([d0]) #vertical add
+
+
+    start = time.time()
+    nodespair = list(itertools.combinations(oneorder, 2))
+    ordergraph.add_edges_from(nodespair)
+    # heuristics,not known:start from nowhere? distance between 2 items,+-1
+    i=1
+    for item in oneorder:
+            for another in oneorder:
+                if another ==item:
+                    matrix[i].append(None)
+                    continue
+                pro_x1 = loc_dict[another][0]  # x,y coordinates of products
+                pro_y1 = loc_dict[another][1]
+                pro_x2 = loc_dict[item][0]  # x,y coordinates of products
+                pro_y2 = loc_dict[item][1]
+                pathlength = graphtest.locdistance(pathgraph, pro_x2 - 1, pro_y2, pro_x1 - 1, pro_y1)
+                ordergraph.add_edge(item,another, weight=pathlength[0])
+                matrix[i].append(pathlength[0])
+            i=i+1
+    for row in matrix:
+        print(row)
+    print("Computing shortest distance to travel using branch and bound......")
+
+    # algorithm begins here-------------------------------
+    # initial reduce from starting point
+    redumatrix,initcost=matrixredu(matrix)
+
+    # print("initial reduced")
+    # for row in redumatrix:
+    #     print(row)
+    # calculate from start to other node:
+    src = 0
+    oneordertemp=oneorder[:]
+
+    while len(oneordertemp) != 1:
+        redumatrixtemp,optchoice,cost=reduroutine(redumatrix,src,oneordertemp,oneorder,initcost)
+        redumatrix=[row[:] for row in redumatrixtemp]
+        # print('optchorce',optchoice)
+        src = optchoice
+        initcost=cost
+        optoneorder.append(oneorder[optchoice-1])
+        oneordertemp.remove(oneorder[optchoice-1])
+        print('opt order',oneorder[optchoice-1])
+    mindist=cost
+    optoneorder.append(oneordertemp[0])
+    # oneorder=oneordertemp[:]
+    # algorithm ends here---------------------------------
+
+    print('Minimum travel distance: ', mindist, ',in order of: ', 'start from ', (init_x, init_y), optoneorder,
+          ', end at ',
+          (end_x, end_y))
+
+    for item in optoneorder:
+        print('go to shelf:', shelf_dict[item], 'on location:', loc_dict[item], 'pick up item:', item, ', then ', )
+    # measure time
+    end = time.time()
+    print('drop off at:', [end_x, end_y])
+    print('Nearest neighbor cost:', end - start)
+    min = mindist
+    return optoneorder, min
+
+
 def originalorder(pathgraph,oneorder,x_init,y_init,x_end,y_end):
     # original order
     dist_oneorder = 0
@@ -411,8 +589,12 @@ def singleOrder(pathgraph,oneorder,x_init,y_init,x_end,y_end):
     orig=[]
     for element in oneorder:
         orig.append(element)
+    choice = 2
+    if choice==1:#nearest neighbor
+        optoneorder, mintravel = optimizeorder(pathgraph, oneorder, x_init, y_init, x_end, y_end)
+    elif choice==2:#branch and bound
+        optoneorder, mintravel = branchnbound(pathgraph, oneorder, x_init, y_init, x_end, y_end)
 
-    optoneorder,mintravel=optimizeorder(pathgraph,oneorder,x_init,y_init,x_end,y_end)
 
     return orig,dist_org,optoneorder,mintravel
 
@@ -452,16 +634,21 @@ def inputpara():
 
     x_init, y_init = input("Hello User, where is your worker? please enter: x,y:  if exceeds,default 0,0 \n > ").split(
         ',')
+    x_init=int(x_init)
+    y_init=int(y_init)
     # print type(x_init) is not int or type(x_init) is not int or x_init > 36 or y_init > 20
-    if type(x_init) is not int or type(x_init) is not int or x_init > 36 or y_init > 20:
+    if x_init > 36 or y_init > 20:
         x_init = 0
         y_init = 0
     x_end, y_end = input("What is your worker's end location? please enter x,y:  if exceeds, default 0,20 \n > ").split(
         ',')
     # print type(x_end) is not int or type(x_end) is not int or x_end > 36 or y_end > 20
-    if type(x_end) is not int or type(x_end) is not int or x_end > 36 or y_end > 20:
+    x_end=int(x_end)
+    y_end=int(y_end)
+    if  x_end > 36 or y_end > 20:
         x_end = 0
         y_end = 20
+
     return x_init, y_init, x_end, y_end
 
 def processorder(pathgraph,x_init, y_init, x_end, y_end):
