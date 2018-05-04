@@ -422,7 +422,7 @@ def reduroutine(redumatrix,src,oneordertemp,oneorder,initcost):
 
     minsubcost=10000
     for des in range(1,len(redumatrix)):
-        if des==src or oneorder[des-1] not in oneordertemp:#both situation NONE i.e. inf
+        if des==src or oneorder[des-1] not in oneordertemp or redumatrix[src][des]==None:#both situation NONE i.e. inf
             continue
         for i in range(len(redumatrixtemp)):
             redumatrixtemp[i][des]=None                 #set des col to inf
@@ -434,11 +434,11 @@ def reduroutine(redumatrix,src,oneordertemp,oneorder,initcost):
         #     print(row)
         # for row in redumatrix2:
         #     print(row)
-        print('check empt:', subcost, initcost, redumatrix[src][des],src,des)
-        subcost=subcost+initcost+redumatrix[src][des]#need solve!!!!!!!!!!!!!!!!!!!!!!! None, not exclude former node
+        # print('check empt:', subcost, initcost, redumatrix[src][des],src,des)
+        subcost=subcost+initcost+redumatrix[src][des]#need solve!!!!!!!!!!!!!!!!!!!!!!! None, not exclude former node, now solved by if not None,not right
 
         # save to matrix_dict
-        matrix_dict[(des,src)]=[subcost,redumatrix2,list(set(oneordertemp)-{des})]#lower bound to this point,its redumatrix for future use, its remaining child nodes
+        matrix_dict[(des,src)]=[subcost,redumatrix2,list(set(oneordertemp)-{oneorder[des-1]})]#lower bound to this point,its redumatrix for future use, its remaining child nodes
 
         if subcost< minsubcost:
             minsubcost=subcost
