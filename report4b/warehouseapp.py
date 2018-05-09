@@ -521,7 +521,7 @@ def branchnbound(pathgraph, oneorder, init_x, init_y, end_x, end_y):
         redumatrixtemp, optchoice, cost = reduroutine(redumatrix, src, oneordertemptemp, oneorder, initcost, optoneordertemp)
 
 #WAY 2
-
+        '''
         hassmaller=False
         mincosttemp=cost
         for item in range(1,len(oneorder)+1):
@@ -604,7 +604,7 @@ def branchnbound(pathgraph, oneorder, init_x, init_y, end_x, end_y):
             oneordertemp.remove(oneorder[optchoice - 1])
             # print('opt order',oneorder[optchoice-1])
     
-        '''
+
     mindist = cost
 
     optoneorder.append(oneordertemp[0])
@@ -664,8 +664,7 @@ def singleOrder(pathgraph,oneorder,x_init,y_init,x_end,y_end):
     orig=[]
     for element in oneorder:
         orig.append(element)
-    # choice=2
-    choice = int(input("Please choose algorithm, 1 for nearest neighbor, 2 for branch and bound:"))
+    choice = 2
     if choice==1:#nearest neighbor
         optoneorder, mintravel = optimizeorder(pathgraph, oneorder, x_init, y_init, x_end, y_end)
     elif choice==2:#branch and bound

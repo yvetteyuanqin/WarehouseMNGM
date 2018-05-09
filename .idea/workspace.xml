@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b30edc8a-4958-42f7-b4cd-e062a782d1fc" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphplot.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphplot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report4b/YuanQin_Report4b.pages" beforeDir="false" afterPath="$PROJECT_DIR$/report4b/YuanQin_Report4b.pages" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/warehouseapp.py" beforeDir="false" afterPath="$PROJECT_DIR$/warehouseapp.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,11 +19,8 @@
       <file leaf-file-name="warehouseapp.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/warehouseapp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="459" column="7" selection-start-line="450" selection-start-column="4" selection-end-line="459" selection-end-column="7" />
-              <folding>
-                <element signature="e#89#104#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-80">
+              <caret line="32" column="16" lean-forward="true" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -37,26 +36,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>length</find>
-      <find>weight</find>
-      <find>end_x</find>
-      <find>x_end</find>
-      <find>inputpara</find>
-      <find>singleorder</find>
-      <find>optimizeorder</find>
-      <find>branch and bound</find>
-      <find>shelf_dict</find>
-      <find>loc_dict</find>
-      <find>orderloc</find>
-      <find>dist_dict</find>
-      <find>findpath</find>
-      <find>com</find>
-      <find>end')</find>
-      <find>('end')</find>
-      <find>redumatrix</find>
-      <find>mattemp</find>
-      <find>destemp</find>
-      <find>set</find>
       <find>row[0]</find>
       <find>i for</find>
       <find>matrix dict</find>
@@ -64,9 +43,29 @@
       <find>reduroutine</find>
       <find>oneorder</find>
       <find>redur</find>
-      <find>matrix_d</find>
       <find>opt order</find>
       <find>optoneorder.appe</find>
+      <find>min</find>
+      <find>cost:</find>
+      <find>reduroutin</find>
+      <find>single</find>
+      <find>==1</find>
+      <find>loc_dict</find>
+      <find>di</find>
+      <find>matrix_d</find>
+      <find>optoneorder</find>
+      <find>optoneorder.append</find>
+      <find>1,45</find>
+      <find>matrix_dict</find>
+      <find>matrix_</find>
+      <find>layer</find>
+      <find>mincosttemp</find>
+      <find>cost</find>
+      <find>matrix</find>
+      <find>destemp</find>
+      <find>row[</find>
+      <find>redumatrix</find>
+      <find>#way</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -93,20 +92,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="eecs221" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eecs221" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -168,12 +154,12 @@
       <window_info content_ui="combo" id="Project" order="0" weight="0.13333334" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.48" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24242425" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32900944" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.48848486" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.28848484" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -208,23 +194,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/warehouseapp.py</url>
-          <line>419</line>
-          <option name="timeStamp" value="64" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/warehouseapp.py</url>
-          <line>430</line>
-          <option name="timeStamp" value="68" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/warehouseapp.py</url>
-          <line>437</line>
-          <option name="timeStamp" value="69" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -232,7 +201,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="70" />
+      <option name="time" value="133" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -377,13 +346,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="1067" selection-start-line="1067" selection-end-line="1067" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/site-packages/networkx/classes/graph.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
@@ -419,13 +381,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graphplot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2911">
-          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/graphtest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -433,20 +388,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24855">
+          <caret line="1657" selection-start-line="1657" selection-end-line="1657" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graphplot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1965">
+          <caret line="131" column="70" selection-start-line="131" selection-start-column="70" selection-end-line="131" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/codecs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="308" selection-start-line="308" selection-end-line="308" />
+        <state relative-caret-position="242">
+          <caret line="56" column="29" lean-forward="true" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/warehouseapp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="459" column="7" selection-start-line="450" selection-start-column="4" selection-end-line="459" selection-end-column="7" />
-          <folding>
-            <element signature="e#89#104#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-80">
+          <caret line="32" column="16" lean-forward="true" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
         </state>
       </provider>
     </entry>
