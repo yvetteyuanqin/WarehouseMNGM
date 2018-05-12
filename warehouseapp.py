@@ -474,32 +474,61 @@ def branchnbound(pathgraph, oneorder, init_x, init_y, end_x, end_y):
     level=0
     nodenum=0
     itemcurr=None
+    pathtemp=[]
 
     # initial reduce from starting point
     redumatrix,initcost=matrixredu(matrix)
     # add root node to dict
-    treenode_dict[nodenum]=[initcost,deepcopy(redumatrix),level,0,None]#root node cost,matrix,number visited,current item,parent
+    treenode_dict[nodenum]=[initcost,deepcopy(redumatrix),level,0,None,[]]#root node cost,matrix,number visited,current item,path
     print("initial reduced")
     for row in redumatrix:
         print(row)
     print("initial cost",initcost)
     # # calculate from start to other node:
     while len(treenode_dict)!=0:
-        minnode =  min(treenode_dict, key=lambda k: treenode_dict[k])
+        minnode =min(treenode_dict, key=lambda k: treenode_dict[k])
 
         itemcurr=treenode_dict[minnode][3]
         level=treenode_dict[minnode][2]
-        matrixtemp=deepcopy(treenode_dict[minnode][1])
+        # matrixtemp=deepcopy(treenode_dict[minnode][1])
+        pathtemp = deepcopy(treenode_dict[minnode][5])
+        pathtemp.append(itemcurr)
         if treenode_dict[minnode][2]==len(oneorder): #if all items reached return mincost
-            #printPath(minnode)
+
             end = time.time()
             print("branch and bound cost:", end-start)
-            return treenode_dict[minnode][0]
+            minlastcost=min(treenode_dict, key=lambda k: treenode_dict[k])
+            print("Shortest path:",treenode_dict[minlastcost][5])
+            print("lower bound:",treenode_dict[minlastcost][0],"Last node:",treenode_dict[minlastcost][3],"its parent:",treenode_dict[minlastcost][4])
+            #pathtemp.append(treenode_dict[minlastcost][3])
+            pathtemp.pop(0)
+            for item in pathtemp:
+                optoneorder.append(oneorder[item-1])
+
+            mindist=treenode_dict[minlastcost][0]#!!!!!!!!!!!!!!!!!!!
+            # print out path
+            print('Minimum travel distance: ', mindist, ',in order of: ', 'start from ', (init_x, init_y), optoneorder,
+                  ', end at ',
+                  (end_x, end_y))
+
+            for item in optoneorder:
+                print('go to shelf:', shelf_dict[item], 'on location:', loc_dict[item], 'pick up item:', item,
+                      ', then ', )
+            # measure time
+
+            print('drop off at:', [end_x, end_y])
+            print('Branch and bound cost:', end - start)
+
+            # return optoneorder, mindist
+
+            return treenode_dict[minnode][0],treenode_dict[minlastcost][0]
     #     redumatrixtemp, optchoice, cost = reduroutine(redumatrix, src, oneordertemptemp, oneorder, initcost, optoneordertemp)
 
-        for des in range(len(oneorder)+1):
 
-            if treenode_dict[minnode][1][itemcurr][des] !=inf:
+        for des in range(len(oneorder)+1):
+            # if des in pathtemp:
+            #     continue# pass if traversed in current path
+            if treenode_dict[minnode][1][itemcurr][des] !=inf and des not in pathtemp:
                 print('new node ',nodenum+1,'----------------------------------------')
                 nodenum=nodenum+1
             #set row and col
@@ -521,9 +550,12 @@ def branchnbound(pathgraph, oneorder, init_x, init_y, end_x, end_y):
                 for row in redumatrixchild:
                     print(row)
                 print("child cost", costchild)
-                print("parent:",itemcurr,"child",des,"level",level)
+                print("parent:",itemcurr,"parent node:",minnode,"child",des,"level",level+1)
+
+
+                print("path before:",pathtemp)
                 costtemp=treenode_dict[minnode][0]+treenode_dict[minnode][1][itemcurr][des]+costchild #child->redumatrix
-                treenode_dict[nodenum] =[costtemp,deepcopy(redumatrixtemp),level+1,des,treenode_dict[minnode][3]]
+                treenode_dict[nodenum] =[costtemp,deepcopy(redumatrixtemp),level+1,des,treenode_dict[minnode][3],deepcopy(pathtemp)]
 
         del treenode_dict[minnode]
         del minnode
@@ -535,18 +567,7 @@ def branchnbound(pathgraph, oneorder, init_x, init_y, end_x, end_y):
 
     # algorithm ends here---------------------------------
 
-    print('Minimum travel distance: ', mindist, ',in order of: ', 'start from ', (init_x, init_y), optoneorder,
-          ', end at ',
-          (end_x, end_y))
 
-    for item in optoneorder:
-        print('go to shelf:', shelf_dict[item], 'on location:', loc_dict[item], 'pick up item:', item, ', then ', )
-    # measure time
-
-    print('drop off at:', [end_x, end_y])
-    print('Branch and bound cost:', end - start)
-
-    return optoneorder, mindist
 
 
 def originalorder(pathgraph,oneorder,x_init,y_init,x_end,y_end):
