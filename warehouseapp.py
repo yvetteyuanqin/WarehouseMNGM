@@ -13,6 +13,8 @@ import networkx as nx
 import itertools
 import time
 import matplotlib.pyplot as plt
+from copy import deepcopy
+from math import inf
 # import cProfile
 # import matplotlib.pyplot as plt
 # import pyqt_test
@@ -30,7 +32,7 @@ optorderlist = []
 optorderdetail = []
 pathnode = nx.Graph()
 dist_dict = {}
-matrix_dict = {}
+treenode_dict = {}
 # pathgraph = nx.Graph()
 
 # readin products location
@@ -383,16 +385,16 @@ def matrixredu(matrix):#both matrix and cost are returned
 
     # reduce by row
     for row in matrix:
-        if len([i for i in row if i is not None])==0 or min(i for i in row if i is not None) == 0:
+        if len([i for i in row if i is not inf])==0 or min(i for i in row) == 0:
             matred.append(row)
         else:
             matred.append([])
-            mincost = min(i for i in row if i is not None)
+            mincost = min(i for i in row )
             for ele in row:
-                if ele != None:
+                if ele != inf:
                     matred[k].append(ele-mincost)
                 else:
-                    matred[k].append(None)
+                    matred[k].append(inf)
             cost = cost +mincost
         k=k+1
 
@@ -402,14 +404,14 @@ def matrixredu(matrix):#both matrix and cost are returned
             continue
         else:
             # if len([i for i in matred[i] if i is not None])!=0:
-            if len([n for n in [row[i] for row in matred] if n is not None])== 0 :#all col is none
+            if len([n for n in [row[i] for row in matred] if n is not inf])== 0 :#all col is none
 
                 continue
             else:
-                mincost = min(n for n in [row[i] for row in matred] if n is not None)
+                mincost = min(n for n in [row[i] for row in matred] if n is not inf)
                 cost=cost + mincost
                 for j in range(len(matred)):
-                    if matred[j][i]== None:
+                    if matred[j][i]== inf:
                         continue
                     matred[j][i] = matred[j][i]-mincost
 
@@ -417,46 +419,6 @@ def matrixredu(matrix):#both matrix and cost are returned
 
     return matred,cost
 
-def reduroutine(redumatrix,src,oneordertemp,oneorder,initcost,optoneorder):
-
-    redumatrixtemp=[row[:] for row in redumatrix]
-    redumatrixtemp[src]=[None]*len(redumatrixtemp)      #set source row to inf
-    minsubcost=10000
-    for des in range(1,len(redumatrixtemp)):
-        if des==src or oneorder[des-1] not in oneordertemp or redumatrix[src][des]==None:#both situation NONE i.e. inf
-            continue
-        for i in range(len(redumatrixtemp)):
-            redumatrixtemp[i][des]=None                 #set des col to inf
-
-        redumatrixtemp[des][src] = None             #set dest->src to inf
-        redumatrix2,subcost=matrixredu(redumatrixtemp)
-        # print("In redu routine")
-        # for row in redumatrix:
-        #     print(row)
-        # for row in redumatrix2:
-        #     print(row)
-        # print('check empt:', subcost, initcost, redumatrix[src][des],src,des)
-        subcost=subcost+initcost+redumatrix[src][des]#need solve!!!!!!!!!!!!!!!!!!!!!!! None, not exclude former node, now solved by if not None,not right
-
-        # save to matrix_dict ，len() is the layer,[] deep copy
-        matrix_dict[(des,len(optoneorder))]=[subcost,[row[:] for row in redumatrix],list(set(oneordertemp)-{oneorder[des-1]}),optoneorder]#lower bound to this point,its redumatrix for future use, its remaining child nodes
-
-        if subcost< minsubcost:
-            minsubcost=subcost
-            mattemp=[row[:] for row in redumatrix2]
-            destemp=des
-        redumatrixtemp = [row[:] for row in redumatrix]  # for next destination cal
-        redumatrixtemp[src] = [None] * len(redumatrixtemp)  # set source row to inf
-    cost=minsubcost
-
-    # print("matrix dict: ", matrix_dict)
-
-    # optoneorder.append(oneorder[destemp-1])
-    # oneorder.remove(oneorder[destemp-1])                  #move to main
-    # for row in mattemp:
-    #     print(row)
-    # print ('cost,item:',cost,destemp)
-    return mattemp,destemp,cost
 
 
 #optimize order use branch and bound methods
@@ -464,7 +426,7 @@ def branchnbound(pathgraph, oneorder, init_x, init_y, end_x, end_y):
     # construct graph and distance dictionary between graph
     ordergraph = nx.Graph()
     optoneorder = []
-    matrix=[[None]]
+    matrix=[[inf]]
     redumatrix=[]
     subcost=0
     ordergraph.add_node('start', pos=(init_x, init_y))
@@ -483,7 +445,7 @@ def branchnbound(pathgraph, oneorder, init_x, init_y, end_x, end_y):
         matrix.append([d0]) #vertical add
 
 
-    start = time.time()
+
     nodespair = list(itertools.combinations(oneorder, 2))
     ordergraph.add_edges_from(nodespair)
     # heuristics,not known:start from nowhere? distance between 2 items,+-1
@@ -491,7 +453,7 @@ def branchnbound(pathgraph, oneorder, init_x, init_y, end_x, end_y):
     for item in oneorder:
             for another in oneorder:
                 if another ==item:
-                    matrix[i].append(None)
+                    matrix[i].append(inf)
                     continue
                 pro_x1 = loc_dict[another][0]  # x,y coordinates of products
                 pro_y1 = loc_dict[another][1]
@@ -501,114 +463,75 @@ def branchnbound(pathgraph, oneorder, init_x, init_y, end_x, end_y):
                 ordergraph.add_edge(item,another, weight=pathlength[0])
                 matrix[i].append(pathlength[0])
             i=i+1
+    print('Original distance')
     for row in matrix:
         print(row)
+    start = time.time()
     print("Computing shortest distance to travel using branch and bound......")
 
     # algorithm begins here-----------------------------------------------------------------------------------------
+    # priority queue for min cost value node using heapq
+    level=0
+    nodenum=0
+    itemcurr=None
+
     # initial reduce from starting point
     redumatrix,initcost=matrixredu(matrix)
+    # add root node to dict
+    treenode_dict[nodenum]=[initcost,deepcopy(redumatrix),level,0,None]#root node cost,matrix,number visited,current item,parent
+    print("initial reduced")
+    for row in redumatrix:
+        print(row)
+    print("initial cost",initcost)
+    # # calculate from start to other node:
+    while len(treenode_dict)!=0:
+        minnode =  min(treenode_dict, key=lambda k: treenode_dict[k])
 
-    # print("initial reduced")
-    # for row in redumatrix:
-    #     print(row)
-    # calculate from start to other node:
-    src = 0
-    oneordertemp = oneorder[:]
-    optoneordertemp=[]
-    oneordertemptemp=oneordertemp[:]
-    while len(oneordertemp) != 1:
-        redumatrixtemp, optchoice, cost = reduroutine(redumatrix, src, oneordertemptemp, oneorder, initcost, optoneordertemp)
+        itemcurr=treenode_dict[minnode][3]
+        level=treenode_dict[minnode][2]
+        matrixtemp=deepcopy(treenode_dict[minnode][1])
+        if treenode_dict[minnode][2]==len(oneorder): #if all items reached return mincost
+            #printPath(minnode)
+            end = time.time()
+            print("branch and bound cost:", end-start)
+            return treenode_dict[minnode][0]
+    #     redumatrixtemp, optchoice, cost = reduroutine(redumatrix, src, oneordertemptemp, oneorder, initcost, optoneordertemp)
 
-#WAY 2
+        for des in range(len(oneorder)+1):
 
-        hassmaller=False
-        mincosttemp=cost
-        for item in range(1,len(oneorder)+1):
-            if item not in [i[0] for i in matrix_dict.keys()]:
-                continue
-            layer=max([i[1] for i in matrix_dict.keys() if i[0] == item])#get the largest layer which according to certain key
-            if matrix_dict[(item,layer)][0] < mincosttemp and layer is not 0:
-                hassmaller=True
-                mincosttemp=matrix_dict[(item,layer)][0]
-                itemtemp=item
-                layertemp=layer
+            if treenode_dict[minnode][1][itemcurr][des] !=inf:
+                print('new node ',nodenum+1,'----------------------------------------')
+                nodenum=nodenum+1
+            #set row and col
+
+                redumatrixtemp=deepcopy(redumatrix)
+                redumatrixtemp[itemcurr]=[inf]*len(redumatrixtemp)      #set source row to inf
+                for i in range(len(redumatrixtemp)):
+                    redumatrixtemp[i][des]=inf                 #set des col to inf
+
+                redumatrixtemp[des][0] = inf            #set dest->src to inf
+
+                print("child to be reduced")
+                for row in redumatrixtemp:
+                    print(row)
+                #reduce child matrix
+                redumatrixchild,costchild=matrixredu(deepcopy(redumatrixtemp))
+                print("child reduced")
+
+                for row in redumatrixchild:
+                    print(row)
+                print("child cost", costchild)
+                print("parent:",itemcurr,"child",des,"level",level)
+                costtemp=treenode_dict[minnode][0]+treenode_dict[minnode][1][itemcurr][des]+costchild #child->redumatrix
+                treenode_dict[nodenum] =[costtemp,deepcopy(redumatrixtemp),level+1,des,treenode_dict[minnode][3]]
+
+        del treenode_dict[minnode]
+        del minnode
 
 
 
-        # for itemcost in [row[0] for row in matrix_dict.values()]:
-        #     if itemcost <cost:
-        #         minindex = [row[0] for row in matrix_dict.values()].index(itemcost)
-        #         print('minindex',minindex)
-        #         (destmintemp, layertemp) = list(matrix_dict.keys())[minindex]
-        #         if oneorder[destmintemp - 1] not in optoneorder:  # only bounce back when dest not traversed(not parent)
-        #             if layertemp is not 0:#layertemp < len(optoneorder)-1 and
-        #                 hassmaller=True
-        #                 if itemcost<itemcosttemp:
-        #                     itemcosttemp=itemcost
-        #                     (destmin, layer) = list(matrix_dict.keys())[minindex]
 
-        if hassmaller is True:
-            oneordertemp = matrix_dict[(itemtemp, layertemp)][2][:]
-            oneordertemp.append(oneorder[itemtemp - 1])  # add opt this time but not excatly opt
-            src = itemtemp
-            redumatrix = [row[:] for row in matrix_dict[(itemtemp, layertemp)][1]]
-            if len([i for i in redumatrix[src] if i is not None])==0 and src == itemtemp:
-                hassmaller=False
-            initcost = matrix_dict[(itemtemp, layertemp)][0]
-            optoneorder = matrix_dict[(itemtemp, layertemp)][3][:]
-            del matrix_dict[(itemtemp,layertemp)]
-            optoneordertemp = optoneorder[:]
-            oneordertemptemp = oneordertemp[:]
-        if hassmaller is False:
-            redumatrix = [row[:] for row in redumatrixtemp]  # go down the tree if indeed smallest
-            # print('optchorce',optchoice)
-            src = optchoice
-            initcost = cost
-            # print('normal opt:', oneorder[optchoice - 1])
-            del matrix_dict[(src,len(optoneorder))]
-            optoneorder.append(oneorder[optchoice - 1])
-            optoneordertemp=optoneorder[:]
-            oneordertemp.remove(oneorder[optchoice - 1])
-            oneordertemptemp=oneordertemp[:]
 
-            # print('opt order',oneorder[optchoice-1])
-        print('OPT TILL NOW', optoneorder)
-
-        '''#WAY 1 SECCEED
-        # get the minimum of dict
-        if min([row[0] for row in matrix_dict.values()]) < cost:
-            minindex = [row[0] for row in matrix_dict.values()].index(min([row[0] for row in matrix_dict.values()]))
-            # print('minindex',list(matrix_dict.keys()))
-            (destmin, srcmin) = list(matrix_dict.keys())[minindex]
-            if oneorder[destmin-1] not in optoneorder:  # only bounce back when dest not traversed(not parent)
-                oneordertemp = matrix_dict[minindex][2][:]  # *= all dest
-                src = destmin
-                redumatrix = [row[:] for row in matrix_dict[minindex][1]]
-                initcost = matrix_dict[minindex][0]
-                optoneorder=matrix_dict[minindex][3][:]
-            else:
-                redumatrix = [row[:] for row in redumatrixtemp]  # go down the tree if indeed smallest same as normal
-                # print('optchorce',optchoice)
-                src = optchoice
-                initcost = cost
-                optoneorder.append(oneorder[optchoice - 1])
-                oneordertemp.remove(oneorder[optchoice - 1])
-        else:
-            redumatrix = [row[:] for row in redumatrixtemp]  # go down the tree if indeed smallest
-            # print('optchorce',optchoice)
-            src = optchoice
-            initcost = cost
-            print('normal opt:',oneorder[optchoice - 1])
-            optoneorder.append(oneorder[optchoice - 1])
-            oneordertemp.remove(oneorder[optchoice - 1])
-            # print('opt order',oneorder[optchoice-1])
-    
-        '''
-    mindist = cost
-
-    optoneorder.append(oneordertemp[0])
-    # oneorder=oneordertemp[:]
 
     # algorithm ends here---------------------------------
 
@@ -619,7 +542,7 @@ def branchnbound(pathgraph, oneorder, init_x, init_y, end_x, end_y):
     for item in optoneorder:
         print('go to shelf:', shelf_dict[item], 'on location:', loc_dict[item], 'pick up item:', item, ', then ', )
     # measure time
-    end = time.time()
+
     print('drop off at:', [end_x, end_y])
     print('Branch and bound cost:', end - start)
 
