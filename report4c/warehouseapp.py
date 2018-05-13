@@ -480,8 +480,8 @@ def branchnbound(pathgraph, oneorder, init_x, init_y, end_x, end_y):
     redumatrix,initcost=matrixredu(matrix)
     # add root node to dict
     treenode_dict[nodenum]=[initcost,deepcopy(redumatrix),level,0,None,[]]#root node cost,matrix,number visited,current item,path
-    print("initial matrix")
-    for row in matrix:
+    print("initial reduced")
+    for row in redumatrix:
         print(row)
     print("initial cost",initcost)
     # # calculate from start to other node:
@@ -547,10 +547,7 @@ def branchnbound(pathgraph, oneorder, init_x, init_y, end_x, end_y):
             # pathtemp.append(treenode_dict[minlastcost][3])
             # minlastcost=min(treenode_dict, key=lambda k: treenode_dict[k])
             print("Shortest path:",treenode_dict[nodenum][5],"Last node:",treenode_dict[nodenum][3],"its parent:",treenode_dict[nodenum][4])
-            print("upper bound:",treenode_dict[nodenum][0])
-            print("final matrix")
-            for row in treenode_dict[nodenum][1]:
-                print(row)
+            print("lower bound:",treenode_dict[nodenum][0])
             pathtemp.append(treenode_dict[nodenum][3])
             pathtemp.pop(0)
             for item in pathtemp:

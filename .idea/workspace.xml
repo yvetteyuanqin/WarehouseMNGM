@@ -13,14 +13,26 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="warehouseapp.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/warehouseapp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="505" column="47" selection-start-line="505" selection-start-column="47" selection-end-line="505" selection-end-column="47" />
+            <state relative-caret-position="1540">
+              <caret line="539" selection-start-line="539" selection-end-line="539" />
               <folding>
                 <element signature="e#91#106#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="graphplot.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/graphplot.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1965">
+              <caret line="131" column="70" selection-start-line="131" selection-start-column="70" selection-end-line="131" selection-end-column="70" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -37,15 +49,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>oneorder</find>
-      <find>redur</find>
-      <find>opt order</find>
-      <find>optoneorder.appe</find>
-      <find>min</find>
-      <find>cost:</find>
-      <find>reduroutin</find>
-      <find>single</find>
-      <find>==1</find>
       <find>loc_dict</find>
       <find>di</find>
       <find>matrix_d</find>
@@ -63,10 +66,19 @@
       <find>inf</find>
       <find>matrix</find>
       <find>matrix_dict</find>
-      <find>itemcurr</find>
       <find>level</find>
       <find>treenode_dict</find>
       <find>nodenum</find>
+      <find>for row</find>
+      <find>for</find>
+      <find>level 8</find>
+      <find>level</find>
+      <find>level 10</find>
+      <find>level 11</find>
+      <find>level 9</find>
+      <find>itemcurr</find>
+      <find>last</find>
+      <find>last node</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -149,18 +161,17 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="756" height="900" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="0" width="932" height="900" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.13333334" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.44727272" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5466667" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32900944" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.49333334" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.47878787" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -173,21 +184,21 @@
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" weight="0.13333334" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32900944" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.42060605" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3148585" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32900944" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Python Console" order="7" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -198,18 +209,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/warehouseapp.py</url>
-          <line>487</line>
-          <option name="timeStamp" value="137" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/warehouseapp.py</url>
-          <line>527</line>
-          <option name="timeStamp" value="139" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/warehouseapp.py</url>
-          <line>559</line>
-          <option name="timeStamp" value="140" />
+          <line>544</line>
+          <option name="timeStamp" value="142" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -219,10 +220,20 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="141" />
+      <option name="time" value="144" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/warehouseapp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7575">
+          <caret line="505" column="47" selection-start-line="505" selection-start-column="47" selection-end-line="505" selection-end-column="47" />
+          <folding>
+            <element signature="e#91#106#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/graphtest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="795">
@@ -263,7 +274,7 @@
         <state relative-caret-position="6855">
           <caret line="465" column="7" selection-start-line="465" selection-start-column="7" selection-end-line="465" selection-end-column="7" />
           <folding>
-            <element signature="e#89#104#0" expanded="true" />
+            <element signature="e#91#106#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -280,7 +291,7 @@
         <state relative-caret-position="480">
           <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
           <folding>
-            <element signature="e#89#104#0" expanded="true" />
+            <element signature="e#91#106#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -325,7 +336,7 @@
         <state relative-caret-position="480">
           <caret line="32" column="13" lean-forward="true" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
           <folding>
-            <element signature="e#89#104#0" expanded="true" />
+            <element signature="e#91#106#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -335,7 +346,7 @@
         <state relative-caret-position="2070">
           <caret line="138" lean-forward="true" selection-start-line="138" selection-end-line="138" />
           <folding>
-            <element signature="e#89#104#0" expanded="true" />
+            <element signature="e#91#106#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -352,7 +363,7 @@
         <state relative-caret-position="285">
           <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
           <folding>
-            <element signature="e#89#104#0" expanded="true" />
+            <element signature="e#91#106#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -413,16 +424,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graphplot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1965">
-          <caret line="131" column="70" selection-start-line="131" selection-start-column="70" selection-end-line="131" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/codecs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
@@ -437,10 +438,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/graphplot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1965">
+          <caret line="131" column="70" selection-start-line="131" selection-start-column="70" selection-end-line="131" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/warehouseapp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="505" column="47" selection-start-line="505" selection-start-column="47" selection-end-line="505" selection-end-column="47" />
+        <state relative-caret-position="1540">
+          <caret line="539" selection-start-line="539" selection-end-line="539" />
           <folding>
             <element signature="e#91#106#0" expanded="true" />
           </folding>
