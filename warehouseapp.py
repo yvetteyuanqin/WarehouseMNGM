@@ -27,6 +27,8 @@ l=1 #rack
 
 loc_dict = {}  # location according to id
 shelf_dict ={}
+
+iteminfo_dict={}
 orderlist = []
 optorderlist = []
 optorderdetail = []
@@ -37,7 +39,7 @@ treenode_dict = {}
 
 # readin products location
 def readin():
-
+    # read order location
     with open('warehouse-grid.csv') as csvfile:
         spamreader = csv.reader(csvfile)
         max_x = 0
@@ -56,8 +58,26 @@ def readin():
     max_x = (max_x-1)/2
     max_y = (max_y - 1) / 2
     print ("Max rack number in row, col", max_x, max_y)
+    count=0
+    #read item information
+    with open("item-dimensions-tabbed.txt") as bookfile:
+        alist = [line.rstrip() for line in bookfile]
 
-#readin order number
+        for line in alist:
+            row = line.split("\t")
+            if count==0:
+                count=count+1
+                continue
+
+            iteminfo_dict[int(row[0])]={}
+            iteminfo_dict[int(row[0])]['weight']=float(row[4])
+            iteminfo_dict[int(row[0])]['length'] = float(row[1])
+            iteminfo_dict[int(row[0])]['width'] = float(row[2])
+            iteminfo_dict[int(row[0])]['height'] = float(row[3])
+            count=count+1
+    print("Total item number:",count-1)
+
+#readin order number batchful of reader
 def readorder(s):
     with open(s) as csvfile:
         spamreader = csv.reader(csvfile)
@@ -226,8 +246,8 @@ def optimizeorder(pathgraph,oneorder,init_x,init_y,end_x,end_y):
     print('Dynamic programming cost:', end - start)
 
     '''
-
-    #debug use, calculate lower bound
+    '''
+    #debug use, calculate lower bound print minimum spanning tree
     if __debug__:
         print("Calculating lower bound......")
         nodespair = list(itertools.combinations(oneorder, 2))
@@ -255,7 +275,7 @@ def optimizeorder(pathgraph,oneorder,init_x,init_y,end_x,end_y):
         nx.draw_networkx_edge_labels(T, pos, edge_labels=labels)
         plt.show()
 
-
+    '''
     # nearest neighbor
     print("Computing greedily shortest distance to travel ......")
     start = time.time()
@@ -570,9 +590,9 @@ def branchnbound(pathgraph, oneorder, init_x, init_y, end_x, end_y):
             print('drop off at:', [end_x, end_y])
             print('Branch and bound cost:', end - start)
 
-            # return optoneorder, mindist
+            return optoneorder, mindist
 
-            return treenode_dict[minnode][0],treenode_dict[minnode][0]
+            # return treenode_dict[minnode][],treenode_dict[minnode][0]
 
         del treenode_dict[minnode]
         del minnode
@@ -584,6 +604,41 @@ def branchnbound(pathgraph, oneorder, init_x, init_y, end_x, end_y):
 
     # algorithm ends here---------------------------------
 
+def computeeffort(pathgraph,optoneorder,x_init,y_init,x_end,y_end):
+    totaleffort=0
+    totalweight=0
+    count=0
+    distemp=0
+    for id in optoneorder:
+        if id not in iteminfo_dict:
+            print("no dimension information of such item id:",id)
+            totaleffort=0
+            return -1
+        if count==0:
+            distemp, x_des, y_des = findpath(pathgraph, id, x_init, y_init)
+            x_init = x_des
+            y_init = y_des
+            totalweight=totalweight+iteminfo_dict[id]['weight']
+            count=count+1
+            continue
+
+        distemp,x_des,y_des=findpath(pathgraph,id,x_init,y_init)
+        totaleffort = totaleffort + distemp * totalweight
+
+        totalweight = totalweight + iteminfo_dict[id]['weight']
+        x_init=x_des
+        y_init=y_des
+        count=count+1
+
+
+
+
+    distemp,temp=graphtest.locdistance(pathgraph,x_end,y_end,x_init,y_init)
+
+    totaleffort = totaleffort + distemp * totalweight
+
+    print("total effort",round(totaleffort,1))
+    return round(totaleffort,1)
 
 
 
@@ -694,6 +749,12 @@ def processorder(pathgraph,x_init, y_init, x_end, y_end):
         # input single order
         org, origl, opt, min = singleOrder(pathgraph,None, x_init, y_init, x_end, y_end)
         # cProfile.run("org, origl, opt, min = singleOrder(None, x_init, y_init, x_end, y_end)", sort="cumulative")
+
+        #compute effort
+        effortslct = int(input("Whether compute effort? 1 for yes, 2 for no"))
+        if effortslct == 1:
+            totaleffort=computeeffort(pathgraph,opt,x_init,y_init,x_end,y_end)
+
         print('write into file......')
         i = 0
         optorderfile = input("Please list output file name: \n >")
@@ -765,7 +826,7 @@ if __name__ == '__main__':
     #cProfile.run("readin()", sort="cumulative")
     readin()
 
-
+    # '''
     pathgraph = nx.Graph()
     # cProfile.run("pathgraph = createpathg(max_x,max_y,2,1)", sort="cumulative")
     pathgraph = createpathg(max_x,max_y,2,1)
@@ -775,7 +836,7 @@ if __name__ == '__main__':
 
     processorder(pathgraph,x_init, y_init, x_end, y_end)
 
-
+    # '''
 
     # #test
     # a = [[1, 2, 3, 4], [2, 3, 234, 5, 643, 4, 4]]
