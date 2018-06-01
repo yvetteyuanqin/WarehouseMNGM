@@ -613,9 +613,10 @@ def computeeffort(pathgraph,optoneorder,x_init,y_init,x_end,y_end):
     distemp=0
     for id in optoneorder:
         if id not in iteminfo_dict:
-            print("no dimension information of such item id:",id)
-            totaleffort=0
-            return -1
+            print("no dimension information of such item id:",id,"set default weight 0.1")
+            iteminfo_dict[id]={}
+            iteminfo_dict[id]['weight'] = 0.1
+
         if count==0:
             distemp, x_des, y_des = findpath(pathgraph, id, x_init, y_init)
             x_init = x_des
@@ -683,7 +684,7 @@ def singleOrder(pathgraph,oneorder,x_init,y_init,x_end,y_end):
     for element in oneorder:
         orig.append(element)
     # choice=2
-    choice = int(input("Please choose algorithm, 1 for nearest neighbor, 2 for branch and bound:"))
+    choice = 1#int(input("Please choose algorithm, 1 for nearest neighbor, 2 for branch and bound:"))
     if choice==1:#nearest neighbor
         optoneorder, mintravel = optimizeorder(pathgraph, oneorder, x_init, y_init, x_end, y_end)
     elif choice==2:#branch and bound
@@ -762,9 +763,9 @@ def processorder(pathgraph,x_init, y_init, x_end, y_end):
         optorderfile = input("Please list output file name: \n >")
         title = ['Order number:'] + [i]
         optorderdetail.append(title)
-        start = ['Start location:'] + [(x_init, y_init)]
+        start = ['Start location:'] + [x_init, y_init]
         optorderdetail.append(start)
-        end = ['End location:'] + [(x_end, y_end)]
+        end = ['End location:'] + [x_end, y_end]
         optorderdetail.append(end)
         origorder = ['Original order:   '] + org
         optorderdetail.append(origorder)
@@ -774,6 +775,8 @@ def processorder(pathgraph,x_init, y_init, x_end, y_end):
         optorderdetail.append(dist1)
         dist2 = ['Optimized parts distance:'] + [min]
         optorderdetail.append(dist2)
+        effortterm = ['Total effort:'] + [totaleffort]
+        optorderdetail.append(effortterm)
         writeorderfile(optorderdetail, optorderfile)
 
         i = i + 1
@@ -783,10 +786,13 @@ def processorder(pathgraph,x_init, y_init, x_end, y_end):
         readorder(optorderfile)
         # for oneorder in orderlist:
         optorderfile = input("Please list output file name: \n >")
-
+        effortslct = int(input("Whether compute effort? 1 for yes, 2 for no"))
         for i in range(0,len(orderlist)):
             oneorder = orderlist[i]
             org,origl,opt,min=singleOrder(pathgraph,oneorder,x_init, y_init, x_end, y_end)
+            if effortslct == 1:
+                totaleffort = computeeffort(pathgraph, opt, x_init, y_init, x_end, y_end)
+
             print ("number processed:",i+1)
             optorderlist.append(opt)
 
@@ -804,6 +810,9 @@ def processorder(pathgraph,x_init, y_init, x_end, y_end):
             optorderdetail.append(dist1)
             dist2 = ['Optimized parts distance:'] + [min]
             optorderdetail.append(dist2)
+            effortterm = ['Total effort:'] + [totaleffort]
+            optorderdetail.append(effortterm)
+
         writeorderfile(optorderdetail, optorderfile)
 
 
