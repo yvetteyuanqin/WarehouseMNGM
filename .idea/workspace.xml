@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b30edc8a-4958-42f7-b4cd-e062a782d1fc" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphplot.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphplot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res.csv" beforeDir="false" afterPath="$PROJECT_DIR$/res.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/warehouseapp.py" beforeDir="false" afterPath="$PROJECT_DIR$/warehouseapp.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -12,21 +15,27 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="warehouseapp.py" pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="warehouseapp.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/warehouseapp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3242">
-              <caret line="681" column="28" lean-forward="true" selection-start-line="681" selection-start-column="28" selection-end-line="681" selection-end-column="28" />
+            <state relative-caret-position="84">
+              <caret line="829" column="12" lean-forward="true" selection-start-line="829" selection-start-column="12" selection-end-line="829" selection-end-column="12" />
+              <folding>
+                <element signature="e#91#106#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="graphplot.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="graphplot.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/graphplot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1644">
-              <caret line="131" column="70" selection-start-line="131" selection-start-column="70" selection-end-line="131" selection-end-column="70" />
+            <state relative-caret-position="324">
+              <caret line="235" column="68" lean-forward="true" selection-start-line="235" selection-start-column="68" selection-end-line="235" selection-end-column="68" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -42,15 +51,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>layer</find>
-      <find>mincosttemp</find>
-      <find>cost</find>
-      <find>destemp</find>
-      <find>row[</find>
-      <find>redumatrix</find>
-      <find>#way</find>
-      <find>inf</find>
-      <find>matrix</find>
       <find>matrix_dict</find>
       <find>level</find>
       <find>treenode_dict</find>
@@ -72,6 +72,15 @@
       <find>disttemp</find>
       <find>float</find>
       <find>optoptopt</find>
+      <find>lower</find>
+      <find>the ord</find>
+      <find>181202</find>
+      <find>id not exist</find>
+      <find>id not exis</find>
+      <find>352109	397889	386850	380489	287261</find>
+      <find>id not</find>
+      <find>loc_dict</find>
+      <find>print(lo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -82,17 +91,15 @@
       <list>
         <option value="$PROJECT_DIR$/pyqt_test.py" />
         <option value="$PROJECT_DIR$/graphtest.py" />
-        <option value="$PROJECT_DIR$/graphplot.py" />
         <option value="$APPLICATION_CONFIG_DIR$/pycharm.vmoptions" />
+        <option value="$PROJECT_DIR$/graphplot.py" />
         <option value="$PROJECT_DIR$/warehouseapp.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="43" />
-    <option name="y" value="22" />
-    <option name="width" value="1397" />
-    <option name="height" value="878" />
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -129,7 +136,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/warehouseapp.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/graphplot.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -156,11 +163,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.13333334" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.36242425" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30060607" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32900944" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -188,10 +196,30 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="149" />
+      <option name="time" value="157" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/warehouseapp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10215">
+          <caret line="681" column="28" lean-forward="true" selection-start-line="681" selection-start-column="28" selection-end-line="681" selection-end-column="28" />
+          <folding>
+            <element signature="e#91#106#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graphplot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1965">
+          <caret line="131" column="70" selection-start-line="131" selection-start-column="70" selection-end-line="131" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/warehouseapp.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7170">
@@ -381,24 +409,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24855">
-          <caret line="1657" selection-start-line="1657" selection-end-line="1657" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/pycharm.vmoptions">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="8" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="308" selection-start-line="308" selection-end-line="308" />
         </state>
       </provider>
     </entry>
@@ -423,17 +437,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graphplot.py">
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1644">
-          <caret line="131" column="70" selection-start-line="131" selection-start-column="70" selection-end-line="131" selection-end-column="70" />
+        <state relative-caret-position="395">
+          <caret line="1663" selection-start-line="1663" selection-end-line="1663" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="310" selection-start-line="310" selection-end-line="310" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/warehouseapp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3242">
-          <caret line="681" column="28" lean-forward="true" selection-start-line="681" selection-start-column="28" selection-end-line="681" selection-end-column="28" />
+        <state relative-caret-position="84">
+          <caret line="829" column="12" lean-forward="true" selection-start-line="829" selection-start-column="12" selection-end-line="829" selection-end-column="12" />
+          <folding>
+            <element signature="e#91#106#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graphplot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="235" column="68" lean-forward="true" selection-start-line="235" selection-start-column="68" selection-end-line="235" selection-end-column="68" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
