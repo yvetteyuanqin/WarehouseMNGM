@@ -7,6 +7,7 @@ from matplotlib.path import Path
 import matplotlib.patches as patches
 import networkx as nx
 import numpy as np
+import linecache
 from warehouseapp import *
 from graphtest import locdistance
 
@@ -14,7 +15,7 @@ from graphtest import locdistance
 pathgraph = nx.Graph()
 
 class App(QWidget):
-    NumButtons = ['Clear', 'Routing', 'not_implemented']
+    NumButtons = ['Clear', 'Routing', 'route_in_batch']
     NumTextBox = ['initial','end','']
     def __init__(self):
         super(App,self).__init__()
@@ -33,6 +34,9 @@ class App(QWidget):
         self.x_end = None
         self.y_end = None
         self.oneorder = []
+        self.optorder=[]
+        self.ordernum = 0    #if no input then plot the first order
+
 
     def initUI(self):
         self.setWindowTitle(self.title)
@@ -44,7 +48,7 @@ class App(QWidget):
         self.createVerticalGroupBox()
         buttonLayout = QVBoxLayout()
         buttonLayout.addWidget(self.verticalGroupBox)
-        grid.addLayout(buttonLayout, 5,0)
+        grid.addLayout(buttonLayout, 7,0)
         #plot
         self.figure = plt.figure()
         self.canvas = FigureCanvas(self.figure)
@@ -59,6 +63,9 @@ class App(QWidget):
         self.textbox3 = QLineEdit(self)
         self.textbox3.move(20, 160)
         self.textbox3.resize(100, 30)
+        self.textbox4 = QLineEdit(self)
+        self.textbox4.move(20, 230)
+        self.textbox4.resize(100, 30)
 
         # Create a button in the window
         self.button1 = QPushButton('Set initial', self)
@@ -67,10 +74,13 @@ class App(QWidget):
         self.button2.move(20, 120)
         self.button3 = QPushButton('One order', self)
         self.button3.move(20, 190)
+        self.button4 = QPushButton('Order #', self)
+        self.button4.move(20, 260)
         # connect button to function on_click
         self.button1.clicked.connect(self.on_click1)
         self.button2.clicked.connect(self.on_click2)
         self.button3.clicked.connect(self.enterorder_click)
+        self.button4.clicked.connect(self.enterordernumber_click)
         self.show()
 
     # onclick 1 2 set initial and end position
@@ -87,7 +97,20 @@ class App(QWidget):
     def enterorder_click(self):
         self.oneorder = self.textbox3.text().split('\t')
         print('one order entered:', self.oneorder)
+    def enterordernumber_click(self):
+        self.optorder=[]
+        self.ordernum= int(self.textbox4.text())
+        print('one order with order number:', self.ordernum)
 
+        # read in optimized store file
+        line = linecache.getline("optimized2500_1.csv", (self.ordernum-1)*8+5)
+
+        line1 = line.rstrip('\n').split('\t')
+        line1 = line1[1:]
+        print(line1)
+        for ele in line1:
+            self.optorder.append(int(ele))
+        print (self.optorder)
 
     def createVerticalGroupBox(self):
         self.verticalGroupBox = QGroupBox()
@@ -177,12 +200,54 @@ class App(QWidget):
 
         self.canvas.draw_idle()
 
-    def not_implemented(self):
-        self.figure.clf()
+    def route_in_batch(self):
+
         ax3 =self.figure.add_subplot(111)
-        ax3.set_title('lowerbound for test')
-        data = np.array([[1, 2], [2, 4], [3, 5], [4, 5]])
+        axes3 = plt.gca()
+        axes3.set_ylim([-1, 21])
+        axes3.set_xlim([-1, 41])
+        ax3.set_title('Draw optimized route according to order number in csv file')
+        opt=self.optorder
+        x_temp = self.x_init
+        y_temp = self.y_init
+        for item in opt:
+            if item not in loc_dict:
+                print("id not exist")
+                return -1
+
+            pro_x = loc_dict[item][0]  # x,y coordinates of products
+            pro_y = loc_dict[item][1]
+            if self.x_init < pro_x:
+                des_x = pro_x - 1  # shorter to take from left path of the rack
+                des_y = pro_y
+                # if pro_x == 0:
+                #     des_x = pro_x + 1 #can only take from right since its the boundary, say wall
+                #     des_y = pro_y
+            # if the product position is west to the current position i.e. init_x > prod_x
+            elif self.x_init > pro_x:
+                des_x = pro_x + 1  # shorter to take from right path of the rack
+                des_y = pro_y
+                # if pro_x == 20:
+                #     des_x = pro_x - 1 #can only take from left since its the boundary, say wall
+                #     des_y = pro_y
+            else:
+                des_x = self.x_init
+                des_y = pro_y
+            min,traversedpoint=locdistance(pathgraph,des_x,des_y,self.x_init,self.y_init)
+            data = np.array(traversedpoint)
+            plt.plot(data[:, 0], data[:, 1])
+            self.x_init=des_x
+            self.y_init=des_y
+        min, traversedpoint = locdistance(pathgraph, self.x_end, self.y_end, self.x_init, self.y_init)#to end point
+        data = np.array(traversedpoint)
         plt.plot(data[:, 0], data[:, 1])
+        self.x_init = x_temp
+        self.y_init = y_temp
+
+        #draw order path
+
+        # data = np.array([[1, 2], [2, 4], [3, 5], [4, 5]])
+        # plt.plot(data[:, 0], data[:, 1])
 
 
         # B = nx.Graph()

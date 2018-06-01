@@ -16,6 +16,7 @@ import time
 import matplotlib.pyplot as plt
 from copy import deepcopy
 from math import inf
+
 # import cProfile
 # import matplotlib.pyplot as plt
 # import pyqt_test

@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b30edc8a-4958-42f7-b4cd-e062a782d1fc" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finalreport/YuanQin_final_report.pages" beforeDir="false" afterPath="$PROJECT_DIR$/finalreport/YuanQin_final_report.pages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res.csv" beforeDir="false" afterPath="$PROJECT_DIR$/res.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphplot.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphplot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res_nearest2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res_nearest_1_020.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/warehouseapp.py" beforeDir="false" afterPath="$PROJECT_DIR$/warehouseapp.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="warehouseapp.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="warehouseapp.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/warehouseapp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-11015">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="270">
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
               <folding>
                 <element signature="e#91#106#0" expanded="true" />
               </folding>
@@ -28,11 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="graphplot.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="graphplot.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/graphplot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="235" column="68" lean-forward="true" selection-start-line="235" selection-start-column="68" selection-end-line="235" selection-end-column="68" />
+            <state relative-caret-position="268">
+              <caret line="203" selection-start-line="203" selection-end-line="203" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -51,19 +53,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>for</find>
-      <find>level 8</find>
-      <find>level 10</find>
-      <find>level 11</find>
-      <find>level 9</find>
-      <find>itemcurr</find>
-      <find>last</find>
-      <find>last node</find>
-      <find>readin</find>
-      <find>graphtest</find>
-      <find>import</find>
-      <find>pathgraph</find>
-      <find>findpath</find>
       <find>disttemp</find>
       <find>float</find>
       <find>optoptopt</find>
@@ -81,6 +70,19 @@
       <find>iteminfo_dict</find>
       <find>iteminfo</find>
       <find>compute</find>
+      <find>numbuttons</find>
+      <find>not_implemented</find>
+      <find>route_</find>
+      <find>self.oneorder</find>
+      <find>please choo</find>
+      <find>createvert</find>
+      <find>optimized</find>
+      <find>one order entered</find>
+      <find>on_click1</find>
+      <find>enterorder_c</find>
+      <find>button1</find>
+      <find>order number</find>
+      <find>ord</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -92,8 +94,8 @@
         <option value="$PROJECT_DIR$/pyqt_test.py" />
         <option value="$PROJECT_DIR$/graphtest.py" />
         <option value="$APPLICATION_CONFIG_DIR$/pycharm.vmoptions" />
-        <option value="$PROJECT_DIR$/graphplot.py" />
         <option value="$PROJECT_DIR$/warehouseapp.py" />
+        <option value="$PROJECT_DIR$/graphplot.py" />
       </list>
     </option>
   </component>
@@ -167,7 +169,7 @@
       <window_info content_ui="combo" id="Project" order="0" weight="0.13333334" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.37818182" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28969696" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32900944" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -450,22 +452,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graphplot.py">
+    <entry file="file://$PROJECT_DIR$/warehouseapp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="235" column="68" lean-forward="true" selection-start-line="235" selection-start-column="68" selection-end-line="235" selection-end-column="68" />
+        <state relative-caret-position="270">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#91#106#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/warehouseapp.py">
+    <entry file="file://$PROJECT_DIR$/graphplot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11015">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="268">
+          <caret line="203" selection-start-line="203" selection-end-line="203" />
           <folding>
-            <element signature="e#91#106#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
