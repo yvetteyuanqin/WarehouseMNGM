@@ -1,0 +1,680 @@
+Order number:	0
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	108335	391825	340367	286457	661741	219130	365285	364695	422465
+Optimized order:	364695	340367	661741	286457	422465	365285	108335	391825	219130
+Original parts distance:	126
+Optimized parts distance:	68
+Total effort:	82.0
+Order number:	1
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	379019	379019	98888	352109	397889	386850	380489	287261	281610
+Optimized order:	287261	380489	281610	352109	397889	386850	379019	379019	98888
+Original parts distance:	70
+Optimized parts distance:	58
+Total effort:	146.1
+Order number:	2
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	342706	342706	111873	198029	366109	287261	76283	254489	258540
+Optimized order:	254489	342706	342706	111873	287261	258540	366109	76283	198029
+Original parts distance:	60
+Optimized parts distance:	46
+Total effort:	21.7
+Order number:	3
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	286457	286457	383599	381992	89769	284905	284251	780493	226774
+Optimized order:	286457	286457	284251	284905	780493	226774	383599	381992	89769
+Original parts distance:	78
+Optimized parts distance:	78
+Total effort:	326.6
+Order number:	4
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	140817	140817	191515	327710	16643	123462	119063	128827	188598
+Optimized order:	140817	191515	327710	140817	16643	123462	119063	188598	128827
+Original parts distance:	60
+Optimized parts distance:	60
+Total effort:	33.1
+Order number:	5
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	323836	323836	660999	661002	181202	328595	276157	296188	8140
+Optimized order:	660999	661002	328595	181202	276157	296188	8140	323836	323836
+Original parts distance:	88
+Optimized parts distance:	56
+Total effort:	136.1
+Order number:	6
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	208299	208299	427230	372539	396879	391680	208660	105912	332555
+Optimized order:	208660	427230	372539	396879	391680	208299	208299	105912	332555
+Original parts distance:	62
+Optimized parts distance:	50
+Total effort:	80.6
+Order number:	7
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	227534	227534	68048	188856	736830	736831	479020	103313	365797
+Optimized order:	188856	68048	736830	736831	479020	365797	227534	103313	227534
+Original parts distance:	104
+Optimized parts distance:	64
+Total effort:	243.9
+Order number:	8
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	97077	97077	117900	384900	769581	1372184	226774
+Optimized order:	117900	97077	97077	769581	1372184	226774	384900
+Original parts distance:	60
+Optimized parts distance:	48
+Total effort:	655.8
+Order number:	9
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	1117760	102601	222340	112167	176484	245818	195946	272457	354111
+Optimized order:	112167	102601	222340	176484	272457	1117760	354111	195946	245818
+Original parts distance:	118
+Optimized parts distance:	78
+Total effort:	1492.7
+Order number:	10
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	103926	103926	106685	260033	306104	397673	16643	193618	180958
+Optimized order:	103926	106685	260033	103926	16643	193618	306104	397673	180958
+Original parts distance:	56
+Optimized parts distance:	58
+Total effort:	98.0
+Order number:	11
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	226774	226774	392017	154454	287261	111873	391857	393069	1400578
+Optimized order:	391857	287261	111873	226774	392017	154454	226774	393069	1400578
+Original parts distance:	96
+Optimized parts distance:	80
+Total effort:	83.1
+Order number:	12
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	1145658	1145658	1590703	1588573	304902	616588	204756	354453	156523
+Optimized order:	354453	204756	1145658	1145658	1590703	616588	304902	156523	1588573
+Original parts distance:	92
+Optimized parts distance:	76
+Total effort:	824.0
+Order number:	13
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	129049	129049	19494	72830	207762	17032	208299	147629	311368
+Optimized order:	19494	129049	129049	72830	207762	17032	208299	147629	311368
+Original parts distance:	58
+Optimized parts distance:	56
+Total effort:	327.1
+Order number:	14
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	48409	48409	255229	396806	104076	286438	356984	376926	360031
+Optimized order:	356984	376926	360031	255229	396806	104076	286438	48409	48409
+Original parts distance:	78
+Optimized parts distance:	58
+Total effort:	338.5
+Order number:	15
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	1651829	1651829	2253198	1622191	1621045	1621158	1622196	1622195	1622191
+Optimized order:	1651829	2253198	1622191	1621045	1621158	1622196	1622195	1622191	1651829
+Original parts distance:	40
+Optimized parts distance:	40
+Total effort:	20.7
+Order number:	16
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	1945580	1945580	1628756	1629090	2625541	2625537	1623864	1622038	1621964
+Optimized order:	1945580	1628756	1629090	2625541	2625537	1623864	1622038	1621964	1945580
+Original parts distance:	40
+Optimized parts distance:	40
+Total effort:	20.7
+Order number:	17
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	1624694	1624694	1626710	1626709	1626718	762640	1138	1329222	298112
+Optimized order:	1138	1624694	1626710	1626709	1626718	1624694	762640	298112	1329222
+Original parts distance:	64
+Optimized parts distance:	70
+Total effort:	133.0
+Order number:	18
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	8659	8659	379184	392028	391231	373389	848856	393114	397759
+Optimized order:	848856	393114	391231	397759	373389	8659	8659	392028	379184
+Original parts distance:	86
+Optimized parts distance:	80
+Total effort:	213.8
+Order number:	19
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	135359	135359	397023	396275	2176822	277444	1365	915008	395667
+Optimized order:	277444	2176822	135359	135359	1365	395667	397023	396275	915008
+Original parts distance:	88
+Optimized parts distance:	76
+Total effort:	1293.5
+Order number:	20
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	2353999	2353999	2355128	2353376	2332456	2363688	2350751	408600	38512
+Optimized order:	408600	2353999	2355128	2353376	2332456	2363688	2350751	2353999	38512
+Original parts distance:	48
+Optimized parts distance:	44
+Total effort:	269.5
+Order number:	21
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	657803	657803	920290
+Optimized order:	920290	657803	657803
+Original parts distance:	68
+Optimized parts distance:	48
+Total effort:	169.5
+Order number:	22
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	1072892
+Optimized order:
+Original parts distance:	36
+Optimized parts distance:	10000
+Total effort:	0
+Order number:	23
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	398496	399274	1324430	1605984	1101321	195946	1101337	1101327	383599
+Optimized order:	1101337	1605984	195946	1324430	1101327	383599	399274	398496	1101321
+Original parts distance:	92
+Optimized parts distance:	70
+Total effort:	718.8
+Order number:	24
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	381992	381992	89769	219130	71795	364846	100792	289088	2625629
+Optimized order:	364846	289088	219130	2625629	381992	71795	381992	89769	100792
+Original parts distance:	116
+Optimized parts distance:	76
+Total effort:	172.7
+Order number:	25
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	204257	204257	194170	371198	30668	322367	272175	1190989	391857
+Optimized order:	391857	204257	204257	371198	1190989	194170	322367	272175	30668
+Original parts distance:	104
+Optimized parts distance:	68
+Total effort:	610.5
+Order number:	26
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	393069	393069	334956	1114834	91849	383599	381992	258569	324086
+Optimized order:	324086	393069	393069	334956	1114834	91849	383599	381992	258569
+Original parts distance:	56
+Optimized parts distance:	50
+Total effort:	575.8
+Order number:	27
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	1456044	1456044	405691	391079	380057	179949	1044876	948360	360062
+Optimized order:	391079	380057	179949	1044876	360062	1456044	1456044	948360	405691
+Original parts distance:	102
+Optimized parts distance:	82
+Total effort:	1376.8
+Order number:	28
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	42416	42416	324086	1720533	272258	239436	230004	219130	1400574
+Optimized order:	324086	272258	239436	42416	42416	230004	1720533	1400574	219130
+Original parts distance:	126
+Optimized parts distance:	80
+Total effort:	1969.1
+Order number:	29
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	308245	308245	137041	341789	316459	145613	363243	365167	387191
+Optimized order:	387191	365167	363243	308245	137041	341789	316459	308245	145613
+Original parts distance:	88
+Optimized parts distance:	80
+Total effort:	156.4
+Order number:	30
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	1192416	1192416	1321	1101319	1147851	61210	231434	76182	388082
+Optimized order:	1101319	1192416	1192416	61210	388082	76182	1321	1147851	231434
+Original parts distance:	92
+Optimized parts distance:	66
+Total effort:	451.5
+Order number:	31
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	388746	388746	361415	379553	357344	396342	89769	391835	359287
+Optimized order:	359287	379553	357344	388746	388746	361415	89769	391835	396342
+Original parts distance:	92
+Optimized parts distance:	76
+Total effort:	424.5
+Order number:	32
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	160922	160922	392028	108775	274852	286783	106685	260033	103926
+Optimized order:	160922	160922	274852	286783	108775	392028	106685	260033	103926
+Original parts distance:	56
+Optimized parts distance:	48
+Total effort:	41.8
+Order number:	33
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	205427	205427	257415	111873	287467	1101838	287261	1689273	398302
+Optimized order:	111873	287261	1689273	257415	398302	287467	205427	205427	1101838
+Original parts distance:	80
+Optimized parts distance:	68
+Total effort:	174.1
+Order number:	34
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	148548	148548	143230	398335	398325	36346	230013	365028	387238
+Optimized order:	398335	148548	143230	398325	36346	230013	148548	365028	387238
+Original parts distance:	56
+Optimized parts distance:	50
+Total effort:	160.8
+Order number:	35
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	366339	366339	223681	81941	227150	287164	89769	31378	108335
+Optimized order:	223681	227150	287164	366339	366339	81941	31378	89769	108335
+Original parts distance:	88
+Optimized parts distance:	70
+Total effort:	113.7
+Order number:	36
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	5697	5697	2489041	392017	391888	378837	1333672	1164788	276338
+Optimized order:	392017	391888	378837	1333672	1164788	276338	5697	5697	2489041
+Original parts distance:	70
+Optimized parts distance:	70
+Total effort:	159.2
+Order number:	37
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	185422	185422	204257	193832	60315	679025	335765	30440	230546
+Optimized order:	204257	60315	185422	193832	185422	679025	335765	30440	230546
+Original parts distance:	64
+Optimized parts distance:	48
+Total effort:	33.3
+Order number:	38
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	41100	41100	360218	137790	24294	131627	145989	251547	244708
+Optimized order:	41100	137790	41100	24294	131627	360218	145989	251547	244708
+Original parts distance:	98
+Optimized parts distance:	74
+Total effort:	832.9
+Order number:	39
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	5735	5735	350562	180023	32895	22234	321099	111873	499508
+Optimized order:	5735	180023	32895	111873	5735	350562	22234	321099	499508
+Original parts distance:	48
+Optimized parts distance:	40
+Total effort:	55.2
+Order number:	40
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	1101259	1101259	392000	207762	392705	46071	324086	475132	475125
+Optimized order:	1101259	324086	1101259	475132	392000	207762	392705	46071	475125
+Original parts distance:	76
+Optimized parts distance:	58
+Total effort:	321.0
+Order number:	41
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	307102	307102	1101337	387191	2150316	2620913	2620902	1102073	1192448
+Optimized order:	387191	1101337	307102	307102	1192448	2150316	2620913	2620902	1102073
+Original parts distance:	64
+Optimized parts distance:	60
+Total effort:	96.2
+Order number:	42
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	184241	184241	226774	185422	950952	193832	231434	286783	274852
+Optimized order:	231434	286783	274852	184241	226774	185422	193832	184241	950952
+Original parts distance:	52
+Optimized parts distance:	46
+Total effort:	111.0
+Order number:	43
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	49524	49524	170758	76182	264804	1456044	108775	380552	227318
+Optimized order:	227318	108775	380552	170758	76182	49524	49524	1456044	264804
+Original parts distance:	78
+Optimized parts distance:	72
+Total effort:	261.5
+Order number:	44
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	408295	408295	408451	308223	59538	348200	1101294	1101291
+Optimized order:	408295	408451	408295	348200	1101294	1101291	308223	59538
+Original parts distance:	62
+Optimized parts distance:	50
+Total effort:	1092.9
+Order number:	45
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	1101290	1101292	385901	207762	311912	19704	357643	375582	475110
+Optimized order:	385901	207762	311912	19704	1101292	357643	375582	1101290	475110
+Original parts distance:	66
+Optimized parts distance:	58
+Total effort:	1049.6
+Order number:	46
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	660042	660042	54430	395701	236272	2625154	1019019	100382
+Optimized order:	2625154	395701	236272	54430	1019019	100382	660042	660042
+Original parts distance:	96
+Optimized parts distance:	56
+Total effort:	2015.4
+Order number:	47
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	154720	299576	817287	336712	1734057	82591	259577	1075851	365562
+Optimized order:	1734057	336712	259577	154720	299576	817287	82591	1075851	365562
+Original parts distance:	108
+Optimized parts distance:	80
+Total effort:	424.8
+Order number:	48
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	259577	259577	343071	1080194	191091	291100	2137707	289491	51164
+Optimized order:	259577	259577	191091	343071	289491	51164	291100	1080194	2137707
+Original parts distance:	98
+Optimized parts distance:	76
+Total effort:	996.9
+Order number:	49
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	2626882	2626882	751202	356984	376926	360031	254322	179564	254322
+Optimized order:	356984	376926	360031	751202	254322	179564	254322	2626882	2626882
+Original parts distance:	64
+Optimized parts distance:	48
+Total effort:	176.3
+Order number:	50
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	165051	165051	206570	265089	354517	136990	322374	208299	147629
+Optimized order:	136990	322374	265089	354517	165051	165051	208299	147629	206570
+Original parts distance:	68
+Optimized parts distance:	62
+Total effort:	469.8
+Order number:	51
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	311368	311368	48409	255229	95075	328242	349267	225316	303243
+Optimized order:	328242	303243	349267	95075	225316	311368	311368	255229	48409
+Original parts distance:	80
+Optimized parts distance:	64
+Total effort:	902.7
+Order number:	52
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	396806	396806	396805	363644	2150800	82695	49925	387491	365587
+Optimized order:	387491	365587	82695	396806	396805	396806	49925	363644	2150800
+Original parts distance:	90
+Optimized parts distance:	66
+Total effort:	82.1
+Order number:	53
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	356984	356984	376926	360031	205154	221912	379532	196285	259556
+Optimized order:	356984	376926	360031	356984	259556	205154	221912	379532	196285
+Original parts distance:	48
+Optimized parts distance:	52
+Total effort:	118.2
+Order number:	54
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	172768	172768	379019	29598	1321	294908	383371	239574	239436
+Optimized order:	239574	172768	172768	29598	383371	239436	294908	379019	1321
+Original parts distance:	86
+Optimized parts distance:	78
+Total effort:	655.8
+Order number:	55
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	245818	245818	195946	342032	1423411	1423408	356430	392723	488554
+Optimized order:	342032	195946	245818	245818	1423411	1423408	392723	488554	356430
+Original parts distance:	70
+Optimized parts distance:	68
+Total effort:	559.0
+Order number:	56
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	488542	488542	7177	306809	245715	42210	1138	1102104	149408
+Optimized order:	1138	7177	306809	245715	42210	488542	488542	149408	1102104
+Original parts distance:	52
+Optimized parts distance:	52
+Total effort:	108.1
+Order number:	57
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	72860	72860	195946	373288	780493	391857	1058452	362469	17057
+Optimized order:	391857	373288	72860	72860	195946	17057	1058452	362469	780493
+Original parts distance:	88
+Optimized parts distance:	48
+Total effort:	53.5
+Order number:	58
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	393663	393663	399874	2184187	52017	372539	305367	110313	156385
+Optimized order:	2184187	399874	52017	372539	305367	110313	156385	393663	393663
+Original parts distance:	60
+Optimized parts distance:	44
+Total effort:	109.8
+Order number:	59
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	70172	70172	208299	147629	311368	48409	255229	1145766	17057
+Optimized order:	1145766	17057	311368	255229	70172	208299	147629	70172	48409
+Original parts distance:	64
+Optimized parts distance:	60
+Total effort:	511.2
+Order number:	60
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	1145765	1145765	2586530	395664	1406725	4847	476883	350155	391890
+Optimized order:	391890	2586530	4847	1145765	1145765	476883	350155	1406725	395664
+Original parts distance:	96
+Optimized parts distance:	68
+Total effort:	1841.3
+Order number:	61
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	741988	741988	337003	394165	309096	383371	176484	1190168	71795
+Optimized order:	741988	741988	176484	1190168	337003	394165	71795	309096	383371
+Original parts distance:	94
+Optimized parts distance:	66
+Total effort:	669.6
+Order number:	62
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	41100	41100	204756	96509	1588730	239436	151579	285408	34182
+Optimized order:	96509	41100	204756	151579	41100	1588730	285408	34182	239436
+Original parts distance:	52
+Optimized parts distance:	46
+Total effort:	110.0
+Order number:	63
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	306176	306176	180023	32895	191515	327710	156753	42416	365028
+Optimized order:	156753	180023	32895	191515	327710	306176	306176	42416	365028
+Original parts distance:	56
+Optimized parts distance:	48
+Total effort:	172.5
+Order number:	64
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	387238	387238	366339	96509	204756	41100	2150795	709705	323532
+Optimized order:	96509	204756	41100	387238	366339	387238	323532	709705	2150795
+Original parts distance:	88
+Optimized parts distance:	68
+Total effort:	137.7
+Order number:	65
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	49473	49473	31378	128827	148141	2625639	2625640	2625638	1621140
+Optimized order:	2625639	2625640	2625638	1621140	31378	128827	49473	49473	148141
+Original parts distance:	84
+Optimized parts distance:	62
+Total effort:	160.4
+Order number:	66
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	1628548	1628548	1622189	1622221	2136618	2253383	2624695	1623758	1628622
+Optimized order:	1628548	1622189	1622221	2136618	2253383	2624695	1623758	1628622	1628548
+Original parts distance:	40
+Optimized parts distance:	40
+Total effort:	20.7
+Order number:	67
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	1622191	1622191	1628109	2253361	2253119	322161	70619	71141	191076
+Optimized order:	1622191	1628109	2253361	2253119	1622191	322161	70619	71141	191076
+Original parts distance:	40
+Optimized parts distance:	40
+Total effort:	19.9
+Order number:	68
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	155925	155925	81066	1192657	391857	87798	475044	84012	736830
+Optimized order:	391857	87798	84012	1192657	155925	81066	736830	155925	475044
+Original parts distance:	94
+Optimized parts distance:	60
+Total effort:	486.2
+Order number:	69
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	1190986	1190986	176484	780493	661741	89769	2150795	59313	48365
+Optimized order:	661741	1190986	1190986	59313	48365	176484	89769	2150795	780493
+Original parts distance:	108
+Optimized parts distance:	74
+Total effort:	289.0
+Order number:	70
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	355027	355027	336788	391888	193832	206395	392019	193618	154454
+Optimized order:	391888	193832	206395	392019	154454	193618	355027	355027	336788
+Original parts distance:	72
+Optimized parts distance:	70
+Total effort:	99.0
+Order number:	71
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	17653	17653	100598	294886	257518	164588	311561	249966	70012
+Optimized order:	294886	257518	17653	17653	100598	164588	311561	249966	70012
+Original parts distance:	48
+Optimized parts distance:	40
+Total effort:	59.4
+Order number:	72
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	396795	396795	363644	1101314	1117760	251547	272457	372898	708440
+Optimized order:	372898	708440	1101314	251547	272457	1117760	396795	363644	396795
+Original parts distance:	102
+Optimized parts distance:	80
+Total effort:	1607.6
+Order number:	73
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	780187	780187	2166906	360342	358857	17032	68048	374101	383599
+Optimized order:	780187	780187	374101	2166906	360342	358857	383599	17032	68048
+Original parts distance:	62
+Optimized parts distance:	52
+Total effort:	222.8
+Order number:	74
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	381992	381992	366647	5307	91849	113039	376286	103926	106685
+Optimized order:	91849	113039	376286	103926	106685	381992	366647	381992	5307
+Original parts distance:	64
+Optimized parts distance:	50
+Total effort:	300.3
+Order number:	75
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	260033	260033	352293	386536	358424	375744	382158	388198	286783
+Optimized order:	286783	382158	260033	386536	358424	375744	260033	388198	352293
+Original parts distance:	90
+Optimized parts distance:	78
+Total effort:	55.5
+Order number:	76
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	34054	34054	360056	367941	198029	17112	190046	1720591	1400584
+Optimized order:	190046	1720591	34054	34054	1400584	198029	360056	17112	367941
+Original parts distance:	102
+Optimized parts distance:	76
+Total effort:	630.5
+Order number:	77
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	1400569	1400569	391857	219501	208974	168753	1399145	1327769
+Optimized order:	391857	219501	208974	168753	1399145	1327769	1400569	1400569
+Original parts distance:	72
+Optimized parts distance:	80
+Total effort:	2819.3
+Order number:	78
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	219501	317225	208974
+Optimized order:	208974	219501	317225
+Original parts distance:	44
+Optimized parts distance:	42
+Total effort:	606.9
+Order number:	79
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	392501
+Optimized order:
+Original parts distance:	40
+Optimized parts distance:	10000
+Total effort:	0
+Order number:	80
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	168753	1399145	1327769	365028	387238	366339	356984	376926	360031
+Optimized order:	356984	376926	360031	365028	387238	366339	1399145	1327769	168753
+Original parts distance:	60
+Optimized parts distance:	48
+Total effort:	420.3
+Order number:	81
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	396794	396794
+Optimized order:	396794	396794
+Original parts distance:	44
+Optimized parts distance:	44
+Total effort:	340.0
+Order number:	82
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	944530	944526
+Optimized order:	944526	944530
+Original parts distance:	100
+Optimized parts distance:	92
+Total effort:	1301.3
+Order number:	83
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	944527	2620261	2217453	2217454	2217451	2217452	2217453	2217454	2217451
+Optimized order:	2620261	2217453	2217454	2217451	2217452	2217453	2217454	2217451	944527
+Original parts distance:	38
+Optimized parts distance:	40
+Total effort:	827.0
+Order number:	84
+Start location:	(0, 0)
+End location:	(0, 20)
+Original order:   	2217452	2217452	135359	380393	298112	181025	393243	392819	8659
+Optimized order:	2217452	392819	2217452	380393	181025	135359	298112	8659	393243
+Original parts distance:	78
+Optimized parts distance:	82
+Total effort:	194.0

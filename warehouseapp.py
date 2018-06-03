@@ -91,7 +91,7 @@ def readorder(s):
                     oneorder.append(int(element))
             orderlist.append(oneorder)
         # print orderlist
-
+    return orderlist
 # find shortest distance between two points
 def findpath(pathgraph,pro_id,init_x = 0, init_y = 0):
     pro_id = int(pro_id)
@@ -685,7 +685,7 @@ def singleOrder(pathgraph,oneorder,x_init,y_init,x_end,y_end):
     for element in oneorder:
         orig.append(element)
     # choice=2
-    choice = 1#int(input("Please choose algorithm, 1 for nearest neighbor, 2 for branch and bound:"))
+    choice = int(input("Please choose algorithm, 1 for nearest neighbor, 2 for branch and bound:"))
     if choice==1:#nearest neighbor
         optoneorder, mintravel = optimizeorder(pathgraph, oneorder, x_init, y_init, x_end, y_end)
     elif choice==2:#branch and bound
@@ -747,6 +747,54 @@ def inputpara():
 
     return x_init, y_init, x_end, y_end
 
+def rearrangeorder(orderlist):
+    wlimit=50
+    wcurr=0
+    oneordertemp=[]
+    orderlistteemp=[]
+    # combine order if total weight does not reach 50
+    # if total item number is larger than 9, split order for quicker routing
+    # if total item weight is larger than 50lb, split
+    # if single item weight is larger than 50, set 1 item per order
+    cnt=0
+    for row in orderlist:
+        for aitem in row:
+            if aitem not in iteminfo_dict:
+                print("no dimension information of such item id:", id, "set default weight 0.1")
+                iteminfo_dict[aitem] = {}
+                iteminfo_dict[aitem]['weight'] = 0.1
+            if iteminfo_dict[aitem]['weight']>=50:
+                if oneordertemp !=[]:
+                    orderlistteemp.append(oneordertemp)
+                    oneordertemp = []
+                    wcurr=0
+                oneordertemp.append(aitem)
+                orderlistteemp.append(oneordertemp)
+                oneordertemp=[]
+                wcurr=0
+                cnt=0
+                continue
+            if (wcurr+iteminfo_dict[aitem]['weight'])>=50:
+                orderlistteemp.append(oneordertemp)
+                oneordertemp = []
+                oneordertemp.append(aitem)
+                wcurr = iteminfo_dict[aitem]['weight']
+                cnt=1
+                continue
+            if cnt+1>=10:
+                orderlistteemp.append(oneordertemp)
+                oneordertemp = []
+                oneordertemp.append(aitem)
+                wcurr = iteminfo_dict[aitem]['weight']
+                cnt=1
+            oneordertemp.append(aitem)
+            wcurr=wcurr+iteminfo_dict[aitem]['weight']
+            cnt=cnt+1
+
+    return orderlistteemp
+
+
+
 def processorder(pathgraph,x_init, y_init, x_end, y_end):
     choice = input("Hello User, input manually: yes? no?")
     if choice == "yes" or choice == "Yes" or choice == "YES":
@@ -784,7 +832,22 @@ def processorder(pathgraph,x_init, y_init, x_end, y_end):
         print('Writing into file......')
     else:
         optorderfile = input("Please list order file name: \n >")
-        readorder(optorderfile)
+        orderlist=readorder(optorderfile)
+
+        print (orderlist)
+
+        # rearrange orderlist if required
+        split = int(input("Order rearrange according to weight? 1 for yes: "))
+        if split == 1:
+            # rearrange order list
+            orderlisttemp=rearrangeorder(orderlist)
+
+            orderlist = orderlisttemp
+        print("Rearranged order list:",
+              orderlist)
+
+
+
         # for oneorder in orderlist:
         optorderfile = input("Please list output file name: \n >")
         effortslct = int(input("Whether compute effort? 1 for yes, 2 for no"))

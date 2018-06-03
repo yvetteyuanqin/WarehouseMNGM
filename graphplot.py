@@ -29,10 +29,10 @@ class App(QWidget):
     #     order info
         self.max_x = 20
         self.max_y = 10
-        self.x_init = None
-        self.y_init = None
-        self.x_end = None
-        self.y_end = None
+        self.x_init = 0
+        self.y_init = 0
+        self.x_end = 0
+        self.y_end = 20
         self.oneorder = []
         self.optorder=[]
         self.ordernum = 0    #if no input then plot the first order
@@ -296,7 +296,7 @@ if __name__ == '__main__':
     else:
         readin()
 
-        # '''
+
         pathgraph = nx.Graph()
         # cProfile.run("pathgraph = createpathg(max_x,max_y,2,1)", sort="cumulative")
         pathgraph = createpathg(max_x, max_y, 2, 1)
